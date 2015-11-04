@@ -1,0 +1,9 @@
+/* app css stylesheet */
+nav .nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer;
+}
+
+nav .nav .menu_links{
+  padding-bottom: 15px;
+  padding-top: 15px;
+}

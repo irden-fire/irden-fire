@@ -13,7 +13,6 @@ var gulp = require('gulp'),
     flatten = require('gulp-flatten'),
     uglify = require('gulp-uglify');
 
-
 var files = require('./gulp/gulp.config.js');
 
 gulp.task('default', function(callback){
@@ -38,7 +37,7 @@ gulp.task('index', function(){
 });
 
 gulp.task('clean', function(){
-  return del([files.build_dir, files.prod_dir], {force: true});
+  return del([files.build_dir], {force: true});
 });
 
 gulp.task('copy-build', ['copy-views', 'publish-components', 'publish-app-css', 'copy-app-js']);

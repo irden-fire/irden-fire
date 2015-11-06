@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <article>
+      <header>
+        <h1>Here you can confirm your order</h1>
+      </header>
+        <p>You choose this programm:
+          <article class="well well-lg">
+            <header>
+              <h4>Name: {{data.name}}</h4>
+            </header>
+            <p>
+              Cost: {{data.cost}}$
+            </p>
+            <p>
+              Description: {{data.description}}
+            </p>
+          </article>
+        </p>
+        <p>
+          <div novalidate class="form well">
+            <div class="row">
+              <label for="name">Name:</label>
+              <input type="text" ng-model="customer.client_name" class="form-control" id="name"/>
+              <!--input type="hidden" ng-model="customer.program" value="{{data.id}}"/-->
+            </div>
+
+            <div class="row">
+              <label for="phone">Phone number:</label>
+              <input type="text" ng-model="customer.contact_number" class="form-control" id="phone"/>
+            </div>
+
+            <div class="row">
+              <label for="email">Email</label>
+              <input type="text" ng-model="customer.email" class="form-control" id="email"/>
+            </div>
+            <hr/>
+              <button type="submit" ng-click="post()" class="btn btn-primary">Post</button>
+          </div>
+        </p>
+    </article>
+  </div>
+</div>

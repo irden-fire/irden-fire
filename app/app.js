@@ -19,6 +19,14 @@ function config ($routeProvider, $locationProvider) {
       templateUrl: '/views/price.html',
       controller: 'PriceCtrl',
     })
+    .when('/confirmation/:param', {
+      templateUrl: '/views/confirmation.html',
+      controller: 'ConfirmationCtrl',
+    })
+    .when('/final', {
+      templateUrl: '/views/final.html',
+      controller: 'FinalCtrl',
+    });
 
     $locationProvider.html5Mode(true);
     $routeProvider.otherwise("/");
@@ -27,11 +35,14 @@ function config ($routeProvider, $locationProvider) {
 angular
 .module('irdenPage', [
   'ngRoute',
+  'ngAnimate',
   'ui.bootstrap',
   'irdenPage.about_us',
   'irdenPage.main',
   'irdenPage.feedback',
   'irdenPage.price',
+  'irdenPage.confirmation',
+  'irdenPage.final',
 ])
 .config(config);
   // configure html5 to get links working on jsfiddle

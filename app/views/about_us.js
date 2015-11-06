@@ -1,7 +1,7 @@
 (function(){
 'use strict';
 
-angular.module('irdenPage.about_us', ['ui.bootstrap'])
+angular.module('irdenPage.about_us', [])
 
 .controller('AboutUsCtrl', [function() {
 

@@ -1,10 +1,54 @@
 <div class="container">
-  <div class="row">
     <article>
       <header>
         <h1>Feedback</h1>
       </header>
         <p>Here you can leave feedback if you want</p>
     </article>
-  </div>
+
+    <article>
+      <header>
+        <h3>Leave feedback</h3>
+      </header>
+      <div novalidate class="form well well-lg">
+      <div class="form-group">
+        <div class="row">
+              <uib-rating ng-model="feedback.rate" max="max" readonly="isReadonly"
+                on-hover="hoveringOver(value)" on-leave="overStar = null"
+                titles="['one','two','three']" aria-labelledby="default-rating">
+              </uib-rating>
+        </div>
+        <div class="row">
+          <label for="title">Title:</label>
+          <input type="text" ng-model="feedback.title" class="form-control" id="title"/>
+        </div>
+
+        <div class="row">
+          <label for="message">Message:</label>
+          <textarea ng-model="feedback.message" class="form-control" rows="5" id="message"/></textarea>
+        </div>
+
+        <div class="row">
+          <label for="author">Author:</label>
+          <input type="text" ng-model="feedback.author" class="form-control" id="author"/>
+        </div>
+
+      </div>
+          <input type="submit" ng-click="post()" value="Post" class="btn btn-primary"/>
+      </div>
+    </article>
+
+    <article ng-repeat="feedback in data" class="well">
+      <header>
+        <h3>{{feedback.title}}</h3>
+        <uib-rating ng-model="feedback.rate" max="max" readonly="true"
+          titles="['one','two','three']" aria-labelledby="default-rating">
+        </uib-rating>
+      </header>
+        <p>{{feedback.message}}</p>
+      <footer>
+        {{feedback.author}}
+        ({{feedback.created | date:'yyyy-MM-dd HH:mm:ss'}})
+      </footer>
+    </article>
 </div>

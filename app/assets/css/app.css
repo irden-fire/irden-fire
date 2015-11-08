@@ -7,3 +7,8 @@ nav .nav .menu_links{
   padding-bottom: 15px;
   padding-top: 15px;
 }
+
+main{
+  background-image: 'irden-fire/assets/lava.jpg';
+  background-size: cover;
+}

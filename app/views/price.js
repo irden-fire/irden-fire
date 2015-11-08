@@ -20,7 +20,9 @@ angular.module('irdenPage.price', ['ui.bootstrap'])
              $scope.status = response.status;
          });
      })();
-
-  $scope.isCollapsed = false;   
+/**
+  @global set description panels state by default (true = panels was closed)
+*/
+  $scope.isCollapsed = true;
 }]);
 })();

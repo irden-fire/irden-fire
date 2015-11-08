@@ -32,7 +32,7 @@ gulp.task('serve', serve('build'));
 gulp.task('index', function(){
 
   return gulp.src('./app/index.html')
-    .pipe(inject(gulp.src(files.app_files.tpl_src), {ignorePath: 'build'}))
+    .pipe(inject(gulp.src(files.app_files.tpl_src), {read: false, ignorePath: files.build_dir, addRootSlash: false}))
     .pipe(gulp.dest(files.build_dir));
 });
 
@@ -40,16 +40,16 @@ gulp.task('clean', function(){
   return del([files.build_dir], {force: true});
 });
 
-gulp.task('copy-build', ['copy-views', 'publish-components', 'publish-app-css', 'copy-app-js']);
+gulp.task('copy-build', ['copy-views', 'publish-components', 'copy-assets', 'publish-app-css', 'copy-app-js']);
 
 gulp.task('copy-assets', function(){
   return gulp.src('./app/assets/**/*')
-    .pipe(gulp.dest('./build/assets'));
+    .pipe(gulp.dest(files.build_dir+'/assets'));
 });
 
 gulp.task('copy-views', function(){
   return gulp.src('./app/view*/**/*')
-    .pipe(gulp.dest('./build/'));
+    .pipe(gulp.dest(files.build_dir));
 });
 
 gulp.task('copy-components-js', function(){
@@ -59,7 +59,8 @@ gulp.task('copy-components-js', function(){
 
 gulp.task('copy-app-js', function(){
   return gulp.src('./app/*.js')
-    //.pipe(uglify())
+    //.pipe(uglify())3	￼Show/Hide
+
     .pipe(gulp.dest(files.build_dir + '/js'));
 });
 
@@ -107,7 +108,6 @@ gulp.task('publish-components', function() {
 gulp.task('publish-app-css', function() {
 
         return gulp.src('./app/assets/css/*.css')
-
         // grab vendor css files from bower_components, minify and push in /public
         //.pipe(minifycss())
         .pipe(concat('app.min.css'))
@@ -116,7 +116,7 @@ gulp.task('publish-app-css', function() {
 
 gulp.task('move-to-prod', function() {
 
-        return gulp.src('./build/**/*')
+        return gulp.src(files.build_dir+'/**/*')
 
         //move to your prod server directory
         .pipe(gulp.dest(files.prod_dir));

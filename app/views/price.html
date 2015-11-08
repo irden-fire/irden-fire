@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-top: 50px;">
   <div class="row">
     <article>
       <header>
@@ -7,9 +7,8 @@
         <p>Here you can find detailed information about our prices </p>
     </article>
   </div>
-</div>
 
-<div class="container">
+<div class="row">
   <h2>Our detailed prices</h2>
   <p>Here you can find out what we propose, and choose one proposition</p>
   <uib-accordion close-others="oneAtATime">
@@ -17,25 +16,25 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Choose one</th>
+        <th>Choose</th>
         <th>Name</th>
         <th>Cost</th>
         <th>Duration</th>
-        <th>How many participants</th>
+        <th>Participants</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="program in data">
         <td>
-          <a href="confirmation/{{program.id}}" class="btn btn-default">I want this one!</a>
+          <a href="confirmation/{{program.id}}" class="btn btn-default">This one!</a>
         </td>
         <td>{{program.name}}</td>
         <td>{{program.cost}}$</td>
         <td>{{program.duration}} min</td>
         <td>{{program.how_many_participants}}</td>
         <td>
-        <button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Show/Hide</button>
+        <button type="button" class="form-control btn-default" ng-click="isCollapsed = !isCollapsed">Show/Hide</button>
         <div uib-collapse="isCollapsed">
           <div class="well well-lg">{{program.description}}</div>
         </div>
@@ -44,4 +43,5 @@
       <tr>
     </tbody>
   </table>
+</div>
 </div>

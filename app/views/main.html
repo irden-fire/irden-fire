@@ -39,9 +39,7 @@
         <header>
           <h2>Feedbacks</h2>
         </header>
-          <p>"{{data[0].message}}" ({{data[0].author}})</p>
-          <p>"{{data[1].message}}" ({{data[1].author}})</p>
-          <p>"{{data[2].message}}" ({{data[2].author}})</p>
+          <p ng-repeat="feedback in data.results">"{{feedback.message}}" ({{feedback.author}})</p>
           <p><a class="btn btn-default" href="/feedback" role="button">Read more »</a></p>
       </article>
   </div>

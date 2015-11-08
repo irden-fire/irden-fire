@@ -10,7 +10,7 @@ angular.module('irdenPage.main', [])
     @param url - end point to service
     @return status and list of feedbacks from server
   */
-      $http({method: 'GET', url: 'http://127.0.0.1:8000/feedbacks/'}).
+      $http({method: 'GET', url: 'http://127.0.0.1:8000/feedbacks/?limit=3'}).
            then(function(response) {
              $scope.status = response.status;
              $scope.data = response.data;

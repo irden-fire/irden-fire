@@ -38,7 +38,7 @@
       </div>
     </article>
 
-    <article ng-repeat="feedback in data" class="well">
+    <article ng-repeat="feedback in data.results" class="well">
       <header>
         <h3>{{feedback.title}}</h3>
         <uib-rating ng-model="feedback.rate" max="max" readonly="true"

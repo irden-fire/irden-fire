@@ -12,12 +12,14 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     flatten = require('gulp-flatten'),
     uglify = require('gulp-uglify'),
+    connect = require('gulp-connect'),
+    path = require('path'),
     Server = require('karma').Server;
 
 var files = require('./gulp/gulp.config.js');
 
 gulp.task('default', function(callback){
-  runSequence('build','watch','serve', callback);
+  runSequence('build','watch','server', callback);
 });
 
 /**
@@ -38,7 +40,22 @@ gulp.task('build', function(callback){
     callback);
 });
 
-gulp.task('serve', serve('build'));
+gulp.task('serve', serve({
+  root: ['build'],
+  port: 3000,
+  fallback: 'index.html',
+  livereload: true
+}));
+
+gulp.task('server', function() {
+  connect.server({
+      root: files.build_dir,
+      port: 3000,
+      host: '0.0.0.0',
+      fallback: path.join(__dirname,files.build_dir+'/index.html'),
+      livereload: true
+    });
+});
 
 gulp.task('index', function(){
 

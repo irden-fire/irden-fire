@@ -11,12 +11,23 @@ var gulp = require('gulp'),
     minifycss = require('gulp-minify-css'),
     rename = require('gulp-rename'),
     flatten = require('gulp-flatten'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    Server = require('karma').Server;
 
 var files = require('./gulp/gulp.config.js');
 
 gulp.task('default', function(callback){
   runSequence('build','watch','serve', callback);
+});
+
+/**
+ * Run test once and exit
+ */
+gulp.task('karma', function (done) {
+  new Server({
+    configFile: './karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
 
 gulp.task('build', function(callback){

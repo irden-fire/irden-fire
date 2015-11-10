@@ -5,37 +5,37 @@
 describe('my app', function() {
 
 
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
+  it('should automatically redirect to /main when location hash/fragment is empty', function() {
     browser.get('index.html');
-    expect(browser.getLocationAbsUrl()).toMatch("/view1");
+    expect(browser.getLocationAbsUrl()).toMatch("/");
   });
 
 
-  describe('view1', function() {
+  describe('main', function() {
 
     beforeEach(function() {
-      browser.get('index.html#/view1');
+      browser.get('index.html/');
     });
 
 
-    it('should render view1 when user navigates to /view1', function() {
+    it('should render main when user navigates to /', function() {
       expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 1/);
+        toMatch(/Hello dear visitor. Here you can get general information about us, our services, and place an order or leave feedback./);
     });
 
   });
 
 
-  describe('view2', function() {
+  describe('price', function() {
 
     beforeEach(function() {
-      browser.get('index.html#/view2');
+      browser.get('index.html/price');
     });
 
 
-    it('should render view2 when user navigates to /view2', function() {
+    it('should render price when user navigates to /price', function() {
       expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 2/);
+        toMatch(/Here you can find detailed information about our prices/);
     });
 
   });

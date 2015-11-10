@@ -18,7 +18,7 @@
           </article>
         </p>
         <p>
-          <div novalidate class="form well">
+          <div novalidate class="form well" id="clientForm">
             <div class="row">
               <label for="name">Name:</label>
               <input type="text" ng-model="customer.client_name" class="form-control" id="name"/>
@@ -27,15 +27,22 @@
 
             <div class="row">
               <label for="phone">Phone number:</label>
-              <input type="text" ng-model="customer.contact_number" class="form-control" id="phone"/>
+              <input type="text" ng-model="customer.contact_number" class="form-control" name="phone"/>
             </div>
 
             <div class="row">
               <label for="email">Email</label>
-              <input type="text" ng-model="customer.email" class="form-control" id="email"/>
+              <input type="email" ng-model="customer.email" required
+                      class="form-control" name="email"/>
+              <span style="color:red" ng-show="clientForm.email.$dirty && clientForm.email.$invalid">
+                <span ng-show="clientForm.email.$error.required">Email is required.</span>
+                <span ng-show="clientForm.email.$error.email">Invalid email address.</span>
+              </span>
             </div>
             <hr/>
-              <button type="submit" ng-click="post()" class="btn btn-primary">Post</button>
+              <button type="submit" ng-click="post()" class="btn btn-primary"
+              ng-disabled="clientForm.phone.$dirty && clientForm.phone.$invalid ||
+  clientForm.email.$dirty && clientForm.email.$invalid">Post</button>
           </div>
         </p>
     </article>

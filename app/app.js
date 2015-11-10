@@ -1,7 +1,7 @@
 (function(){
 'use strict';
 
-function config ($routeProvider, $locationProvider) {
+function config ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
     .when('/', {
      templateUrl: '/views/main.html',
@@ -30,6 +30,8 @@ function config ($routeProvider, $locationProvider) {
 
     $locationProvider.html5Mode(true);
     $routeProvider.otherwise("/");
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken'
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken'
 }
 // Declare app level module which depends on views, and components
 angular

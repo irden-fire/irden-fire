@@ -22,10 +22,12 @@ angular.module('irdenPage.confirmation', [])
   $scope.maxDate = new Date(2020, 5, 22);
   $scope.minDate = new Date();
   $scope.customer.desired_date = new Date();
+
   $scope.dateOptions = {
     formatYear: 'yyyy',
     startingDay: 1
   };
+
   $scope.status = {
     opened: false
   };
@@ -51,6 +53,24 @@ angular.module('irdenPage.confirmation', [])
       });
   };
 
+})
 
+.directive('validUsername', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, elm, attrs, ctrl) {
+            ctrl.$parsers.unshift(function (viewValue) {
+                // Any way to read the results of a "required" angular validator here?
+                var isBlank = viewValue === ''
+                var invalidChars = !isBlank && !/^[A-z0-9]+$/.test(viewValue)
+                var invalidLen = !isBlank && !invalidChars && (viewValue.length < 5 || viewValue.length > 60)
+                ctrl.$setValidity('isBlank', !isBlank)
+                ctrl.$setValidity('invalidChars', !invalidChars)
+                ctrl.$setValidity('invalidLen', !invalidLen)
+                scope.usernameGood = !isBlank && !invalidChars && !invalidLen
+
+            })
+        }
+    }
 });
 })();

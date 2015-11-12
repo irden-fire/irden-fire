@@ -18,45 +18,64 @@
           </article>
         </p>
         <p>
-          <div novalidate class="form well" id="clientForm">
-            <div class="row">
-              <label for="name">Name:</label>
-              <input type="text" ng-model="customer.client_name" class="form-control" id="name"/>
-              <!--input type="hidden" ng-model="customer.program" value="{{data.id}}"/-->
+          <form class="form form-horizontal" name="clientform" novalidate>
+            <div class="control-group" ng-class="{ 'has-error' : clientform.username.$invalid &&
+                                                                (!clientform.username.$pristine || !clientform.username.$dirty)
+                                                              }">
+              <label for="name" class="control-label">Name:</label>
+              <div class="controls">
+                <input type="text" ng-model="customer.client_name" class="form-control" name="username" required/>
+                  <div class="help-inline">
+                    <p ng-show="clientform.username.$invalid && !clientform.username.$pristine" class="help-block">You name is required.</p>
+                  </div>
+              </div>
             </div>
 
-            <div class="row">
-              <label for="phone">Phone number:</label>
-              <input type="text" ng-model="customer.contact_number" class="form-control" name="phone"/>
+            <div class="control-group"  ng-class="{ 'has-error' : clientform.phone.$invalid &&
+                                                                (!clientform.phone.$pristine || !clientform.phone.$dirty)
+                                                              }">
+              <label for="phone" class="control-label">Phone number:</label>
+              <div class="controls">
+                <input type="text" ng-model="customer.contact_number" class="form-control" name="phone" required/>
+                <div class="help-inline">
+                  <p ng-show="clientform.phone.$invalid && !clientform.phone.$pristine" class="help-block">You phone is required.</p>
+                </div>
+              </div>
             </div>
 
-            <div class="row">
-              <label for="email">Email:</label>
-              <input type="email" ng-model="customer.email" required
-                      class="form-control" name="email"/>
-              <span style="color:red" ng-show="clientForm.email.$dirty && clientForm.email.$invalid">
-                <span ng-show="clientForm.email.$error.required">Email is required.</span>
-                <span ng-show="clientForm.email.$error.email">Invalid email address.</span>
-              </span>
+            <div class="control-group" ng-class="{ 'has-error' : clientform.email.$invalid &&
+                                                                (!clientform.email.$pristine || !clientform.email.$dirty)
+                                                              }">
+              <label for="email" class="control-label">Email:</label>
+              <div class="controls">
+                <input type="email" ng-model="customer.email" required
+                        class="form-control" name="email"/>
+                <div class="help-inline">
+                          <p ng-show="clientform.email.$invalid && !clientform.email.$pristine" class="help-block">Wrang email.</p>
+                </div>
+              </div>
             </div>
 
-            <div class="row">
-              <label for="desired_date">Desired date:</label>
-              <input type="date" name="desired_date" class="form-control" uib-datepicker-popup ng-model="customer.desired_date" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+            <div class="control-group">
+              <label for="desired_date" class="control-label">Desired date:</label>
+              <div class="controls">
+                <input type="date" name="desired_date" class="form-control" uib-datepicker-popup ng-model="customer.desired_date" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              </div>
             </div>
 
-            <div class="row">
-              <label for="desired_time">Desired time:</label>
-              <uib-timepicker ng-model="customer.desired_date" name="desired_time"
-                              hour-step="hstep" minute-step="mstep" show-meridian="ismeridian">
-              </uib-timepicker>
+            <div class="control-group">
+              <label for="desired_time" class="control-label">Desired time:</label>
+              <div class="controls">
+                <uib-timepicker ng-model="customer.desired_date" name="desired_time"
+                                hour-step="hstep" minute-step="mstep" show-meridian="ismeridian">
+                </uib-timepicker>
+              </div>
             </div>
 
             <hr/>
               <button type="submit" ng-click="post()" class="btn btn-primary"
-              ng-disabled="clientForm.phone.$dirty && clientForm.phone.$invalid ||
-  clientForm.email.$dirty && clientForm.email.$invalid">Post</button>
-          </div>
+              ng-disabled="clientform.$invalid">Post</button>
+    </form>
         </p>
     </article>
   </div>

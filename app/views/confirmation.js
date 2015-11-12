@@ -36,7 +36,6 @@ angular.module('irdenPage.confirmation', [])
 //Initialization time-picker params and functions
   $scope.hstep = 1;
   $scope.mstep = 15;
-  $scope.customer.desired_time = new Date(0,0,0,0,0);
   $scope.ismeridian = false;
 
   //Form post function

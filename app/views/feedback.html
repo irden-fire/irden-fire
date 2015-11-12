@@ -10,7 +10,7 @@
       <header>
         <h3>Leave feedback</h3>
       </header>
-      <div novalidate class="form well well-lg">
+      <div novalidate class="form well well-lg" name="feedbackForm">
       <div class="form-group">
         <div class="row">
               <uib-rating ng-model="feedback.rate" max="max" readonly="isReadonly"
@@ -31,6 +31,16 @@
         <div class="row">
           <label for="author">Author:</label>
           <input type="text" ng-model="feedback.author" class="form-control" id="author"/>
+        </div>
+
+        <div class="row">
+          <label for="email">Email(doesn't shown at feedback):</label>
+          <input type="email" ng-model="feedback.email" required
+                  class="form-control" name="email"/>
+          <span style="color:red" ng-show="feedbackForm.email.$dirty && feedbackForm.email.$invalid">
+            <span ng-show="clientForm.email.$error.required">Email is required.</span>
+            <span ng-show="clientForm.email.$error.email">Invalid email address.</span>
+          </span>
         </div>
 
       </div>

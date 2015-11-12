@@ -1,9 +1,9 @@
+// Please place all dependencies in this section
 var gulp = require('gulp'),
     plugins = require('gulp-load-plugins')(),
     del = require('del'),
     runSequence = require('run-sequence'),
     inject = require('gulp-inject'),
-    serve = require('gulp-serve'),
     jshint = require('gulp-jshint'),
     mainBowerFiles = require('main-bower-files'),
     concat = require('gulp-concat'),
@@ -23,7 +23,7 @@ gulp.task('default', function(callback){
 });
 
 /**
- * Run test once and exit
+ * Run karma test
  */
 gulp.task('karma', function (done) {
   new Server({
@@ -32,20 +32,18 @@ gulp.task('karma', function (done) {
   }, done).start();
 });
 
+/**
+  * Place here all tasks which connected to building process
+  * like cleaning, uglifing, minifing, concating etc.
+  */
 gulp.task('build', function(callback){
-  runSequence('clean',
+  runSequence(
+    'clean',
     'copy-build',
     'index',
     'move-to-prod',
     callback);
 });
-
-gulp.task('serve', serve({
-  root: ['build'],
-  port: 3000,
-  fallback: 'index.html',
-  livereload: true
-}));
 
 gulp.task('server', function() {
   connect.server({
@@ -57,8 +55,14 @@ gulp.task('server', function() {
     });
 });
 
+/**
+  * This tast inject all dependencies to index.html file.
+  * If you dependency didn't inject please check config file:
+  * ./gulp/gulp.config.js
+  * In this files you need to add path to you dependency in var: app_files.tpl_src
+  * Or move you files in proper location, according to config
+  */
 gulp.task('index', function(){
-
   return gulp.src('./app/index.html')
     .pipe(inject(gulp.src(files.app_files.tpl_src), {read: false, ignorePath: files.build_dir, addRootSlash: false}))
     .pipe(gulp.dest(files.build_dir));
@@ -76,6 +80,7 @@ gulp.task('copy-assets', function(){
 });
 
 gulp.task('copy-views', function(){
+  //TODO check out why if you change view* to views all files moves to the root
   return gulp.src('./app/view*/**/*')
     .pipe(gulp.dest(files.build_dir));
 });
@@ -87,8 +92,8 @@ gulp.task('copy-components-js', function(){
 
 gulp.task('copy-app-js', function(){
   return gulp.src('./app/*.js')
-    //.pipe(uglify())3	￼Show/Hide
-
+    //TODO checkout why there is problem with uglifing
+    //.pipe(uglify())
     .pipe(gulp.dest(files.build_dir + '/js'));
 });
 
@@ -104,7 +109,8 @@ gulp.task('watch', function(){
 
 // Define paths variables
 var dest_path =  files.build_dir;
-// grab libraries files from bower_components, minify and push in /public
+
+// grab main files from bower_components, minify and push in /public
 gulp.task('publish-components', function() {
 
         var jsFilter = gulpFilter('*.js', {restore: true});
@@ -113,21 +119,21 @@ gulp.task('publish-components', function() {
 
         return gulp.src(mainBowerFiles())
 
-        // grab vendor js files from bower_components, minify and push in /public
+        // grab style files from bower_components and push in build_dir
         .pipe(jsFilter)
-        //.pipe(gulp.dest(dest_path + '/js/'))
         .pipe(uglify())
         .pipe(concat('components.min.js'))
         .pipe(gulp.dest(dest_path + '/js'))
         .pipe(jsFilter.restore)
 
+        // grab style files from bower_components and push in build_dir
         .pipe(cssFilter)
         .pipe(minifycss())
         .pipe(concat('components.min.css'))
         .pipe(gulp.dest(dest_path + '/css'))
         .pipe(cssFilter.restore)
 
-        // grab vendor font files from bower_components and push in /public
+        // grab font files from bower_components and push in build_dir
         .pipe(fontFilter)
         .pipe(flatten())
         .pipe(gulp.dest(dest_path + '/fonts'));
@@ -136,16 +142,15 @@ gulp.task('publish-components', function() {
 gulp.task('publish-app-css', function() {
 
         return gulp.src('./app/assets/css/*.css')
-        // grab vendor css files from bower_components, minify and push in /public
+        // grab application custom css files, minify and push in build_dir
+        //TODO checkout why there is problem with app.css minifing
         //.pipe(minifycss())
         .pipe(concat('app.min.css'))
         .pipe(gulp.dest(dest_path + '/css'));
 });
 
 gulp.task('move-to-prod', function() {
-
         return gulp.src(files.build_dir+'/**/*')
-
         //move to your prod server directory
         .pipe(gulp.dest(files.prod_dir));
 });

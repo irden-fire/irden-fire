@@ -31,7 +31,7 @@
             </div>
 
             <div class="row">
-              <label for="email">Email</label>
+              <label for="email">Email:</label>
               <input type="email" ng-model="customer.email" required
                       class="form-control" name="email"/>
               <span style="color:red" ng-show="clientForm.email.$dirty && clientForm.email.$invalid">
@@ -39,6 +39,19 @@
                 <span ng-show="clientForm.email.$error.email">Invalid email address.</span>
               </span>
             </div>
+
+            <div class="row">
+              <label for="desired_date">Desired date:</label>
+              <input type="date" name="desired_date" class="form-control" uib-datepicker-popup ng-model="customer.desired_date" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+            </div>
+
+            <div class="row">
+              <label for="desired_time">Desired time:</label>
+              <uib-timepicker ng-model="customer.desired_time" name="desired_time"
+                              hour-step="hstep" minute-step="mstep" show-meridian="ismeridian">
+              </uib-timepicker>
+            </div>
+
             <hr/>
               <button type="submit" ng-click="post()" class="btn btn-primary"
               ng-disabled="clientForm.phone.$dirty && clientForm.phone.$invalid ||

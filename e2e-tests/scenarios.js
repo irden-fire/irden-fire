@@ -17,7 +17,6 @@ describe('my app', function() {
       browser.get('index.html/');
     });
 
-
     it('should render main when user navigates to /', function() {
       expect(element.all(by.css('[ng-view] p')).first().getText()).
         toMatch(/Hello dear visitor. Here you can get general information about us, our services, and place an order or leave feedback./);

@@ -22,6 +22,8 @@ angular.module('irdenPage.confirmation', [])
   $scope.maxDate = new Date(2020, 5, 22);
   $scope.minDate = new Date();
   $scope.customer.desired_date = new Date();
+  $scope.customer.desired_date.setHours(21);
+  $scope.customer.desired_date.setMinutes(0);
 
   $scope.dateOptions = {
     formatYear: 'yyyy',

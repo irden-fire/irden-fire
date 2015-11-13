@@ -83,4 +83,10 @@
         ({{feedback.created | date:'yyyy-MM-dd HH:mm:ss'}})
       </footer>
     </article>
+    <uib-pagination total-items="data.count" ng-model="bigCurrentPage"
+      max-size="maxSize" class="pagination-sm"
+      boundary-links="true" rotate="false"
+      num-pages="numPages" ng-change="changePage()"
+      items-per-page="numPerPage">
+    </uib-pagination>
 </div>

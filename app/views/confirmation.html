@@ -2,18 +2,18 @@
   <div class="row">
     <article>
       <header>
-        <h1>Here you can confirm your order</h1>
+        <h1>{{'CONFIRMATION_MAIN_HEADER' | translate}}</h1>
       </header>
-        <p>You choose this programm:
+        <p>{{'CONFIRMATION_CHOOSEN_HEADER' | translate}}
           <article class="well well-lg">
             <header>
-              <h4>Name: {{data.name}}</h4>
+              <h4>{{'CONFIRMATION_CHOOSEN_NAME' | translate}} {{data.name}}</h4>
             </header>
             <p>
-              Cost: {{data.cost}}$
+              {{'CONFIRMATION_CHOOSEN_COST' | translate}} {{data.cost}}$
             </p>
             <p>
-              Description: {{data.description}}
+              {{'CONFIRMATION_CHOOSEN_DESCRIPTION' | translate}} {{data.description}}
             </p>
           </article>
         </p>
@@ -22,11 +22,12 @@
             <div class="control-group" ng-class="{ 'has-error' : clientform.username.$invalid &&
                                                                 (!clientform.username.$pristine || !clientform.username.$dirty)
                                                               }">
-              <label for="name" class="control-label">Name:</label>
+              <label for="name" class="control-label">{{'CONFIRMATION_FORM_NAME' | translate}}</label>
               <div class="controls">
                 <input type="text" ng-model="customer.client_name" class="form-control" name="username" required/>
                   <div class="help-inline">
-                    <p ng-show="clientform.username.$invalid && !clientform.username.$pristine" class="help-block">You name is required.</p>
+                    <p ng-show="clientform.username.$invalid && !clientform.username.$pristine" class="help-block">
+                      {{'CONFIRMATION_FORM_NAME_REQUIRED' | translate}}</p>
                   </div>
               </div>
             </div>
@@ -34,11 +35,12 @@
             <div class="control-group"  ng-class="{ 'has-error' : clientform.phone.$invalid &&
                                                                 (!clientform.phone.$pristine || !clientform.phone.$dirty)
                                                               }">
-              <label for="phone" class="control-label">Phone number:</label>
+              <label for="phone" class="control-label">{{'CONFIRMATION_FORM_PHONE' | translate}}</label>
               <div class="controls">
                 <input type="text" ng-model="customer.contact_number" class="form-control" name="phone" required/>
                 <div class="help-inline">
-                  <p ng-show="clientform.phone.$invalid && !clientform.phone.$pristine" class="help-block">You phone is required.</p>
+                  <p ng-show="clientform.phone.$invalid && !clientform.phone.$pristine" class="help-block">
+                    {{'CONFIRMATION_FORM_PHONE_REQUIRED' | translate}}</p>
                 </div>
               </div>
             </div>
@@ -46,25 +48,26 @@
             <div class="control-group" ng-class="{ 'has-error' : clientform.email.$invalid &&
                                                                 (!clientform.email.$pristine || !clientform.email.$dirty)
                                                               }">
-              <label for="email" class="control-label">Email:</label>
+              <label for="email" class="control-label">{{'CONFIRMATION_FORM_EMAIL' | translate}}</label>
               <div class="controls">
                 <input type="email" ng-model="customer.email" required
                         class="form-control" name="email"/>
                 <div class="help-inline">
-                          <p ng-show="clientform.email.$invalid && !clientform.email.$pristine" class="help-block">Wrang email.</p>
+                          <p ng-show="clientform.email.$invalid && !clientform.email.$pristine" class="help-block">
+                            {{'CONFIRMATION_FORM_EMAIL_WRONG' | translate}}</p>
                 </div>
               </div>
             </div>
 
             <div class="control-group">
-              <label for="desired_date" class="control-label">Desired date:</label>
+              <label for="desired_date" class="control-label">{{'CONFIRMATION_FORM_DATE' | translate}}</label>
               <div class="controls">
                 <input type="date" name="desired_date" class="form-control" uib-datepicker-popup ng-model="customer.desired_date" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
               </div>
             </div>
 
             <div class="control-group">
-              <label for="desired_time" class="control-label">Desired time:</label>
+              <label for="desired_time" class="control-label">{{'CONFIRMATION_FORM_TIME' | translate}}</label>
               <div class="controls">
                 <uib-timepicker ng-model="customer.desired_date" name="desired_time"
                                 hour-step="hstep" minute-step="mstep" show-meridian="ismeridian">
@@ -74,7 +77,7 @@
 
             <hr/>
               <button type="submit" ng-click="post()" class="btn btn-primary"
-              ng-disabled="clientform.$invalid">Post</button>
+              ng-disabled="clientform.$invalid">{{'CONFIRMATION_FORM_POST' | translate}}</button>
     </form>
         </p>
     </article>

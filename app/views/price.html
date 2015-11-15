@@ -2,39 +2,39 @@
   <div class="row">
     <article>
       <header>
-        <h1>Prices</h1>
+        <h1>{{'PRICE_MAIN_HEADER' | translate}}</h1>
       </header>
-        <p>Here you can find detailed information about our prices </p>
+        <p>{{'PRICE_MAIN_TEXT' | translate}}</p>
     </article>
   </div>
 
 <div class="row">
-  <h2>Our detailed prices</h2>
-  <p>Here you can find out what we propose, and choose one proposition</p>
+  <h2>{{'PRICE_DETAIL_HEADER' | translate}}</h2>
+  <p>{{'PRICE_DETAIL_TEXT' | translate}}</p>
   <uib-accordion close-others="oneAtATime">
 
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Choose</th>
-        <th>Name</th>
-        <th>Cost</th>
-        <th>Duration</th>
-        <th>Participants</th>
-        <th>Description</th>
+        <th>{{'PRICE_TABLE_CHOOSE' | translate}}</th>
+        <th>{{'PRICE_TABLE_NAME' | translate}}</th>
+        <th>{{'PRICE_TABLE_COST' | translate}}</th>
+        <th>{{'PRICE_TABLE_DURATION' | translate}}</th>
+        <th>{{'PRICE_TABLE_PARTICIPANTS' | translate}}</th>
+        <th>{{'PRICE_TABLE_DESCRIPTION' | translate}}</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="program in data.results">
         <td>
-          <a href="confirmation/{{program.id}}" class="btn btn-default">This one!</a>
+          <a href="confirmation/{{program.id}}" class="btn btn-default">{{'PRICE_TABLE_CHOOSE_BUTTON' | translate}}</a>
         </td>
         <td>{{program.name}}</td>
         <td>{{program.cost}}$</td>
         <td>{{program.duration}} min</td>
         <td>{{program.how_many_participants}}</td>
         <td>
-        <button type="button" class="form-control btn-default" ng-click="isCollapsed = !isCollapsed">Show/Hide</button>
+        <button type="button" class="form-control btn-default" ng-click="isCollapsed = !isCollapsed">{{'PRICE_TABLE_BUTTON' | translate}}</button>
         <div uib-collapse="isCollapsed">
           <div class="well well-lg">{{program.description}}</div>
         </div>

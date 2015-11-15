@@ -8,7 +8,16 @@ nav .nav .menu_links{
   padding-top: 15px;
 }
 
-main{
-  background-image: 'irden-fire/assets/lava.jpg';
-  background-size: cover;
-}
+ .btn { position: relative; overflow: hidden; }
+ .content { position: absolute; }
+
+ .top { top: 0; }
+ .btn:hover .top {top: -100px;}
+
+ .bottom { bottom: -100px; }
+ .btn:hover .bottom {top: 0px;}
+
+ .content {
+  position: relative;
+  transition: top 0.3s;
+ }

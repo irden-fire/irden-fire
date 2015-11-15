@@ -1,14 +1,16 @@
 <main class="jumbotron">
   <article class="container">
     <header>
-    <h1> Welcome to Irden site</h1>
+    <h1> {{'MAIN_WELCOME_TEXT' | translate}}</h1>
     <header>
     <p>
-      Hello dear visitor. Here you can get general information about us, our services,
-      and place an order or leave feedback.
+      {{'MAIN_GREETINGS_TEXT' | translate}}
     </p>
     <p>
-      <a class="btn btn-primary btn-lg" href="/price" role="button">Place an order</a>
+      <a class="btn btn-primary btn-lg" href="/price" role="button">
+        <span class="top content">{{'MAIN_ORDER_BUTTON_TOP' | translate}}</span>
+        <span class="bottom content">{{'MAIN_ORDER_BUTTON_BOTTOM' | translate}}</span>
+      </a>
     </p>
   </article>
 </main>
@@ -21,26 +23,32 @@
   <div class="row">
       <article class="col-md-4">
         <header>
-          <h2>Price</h2>
+          <h2>{{'MAIN_PRICE_HEADER' | translate}}</h2>
         </header>
-          <p>Here you can get general information about our performances</p>
-          <p><a class="btn btn-default" href="/price" role="button">View details »</a></p>
+          <p>{{'MAIN_PRICE_TEXT' | translate}}</p>
+          <p><a class="btn btn-default" href="/price" role="button">
+            {{'MAIN_PRICE_BUTTON' | translate}} »
+          </a></p>
       </article>
 
       <article class="col-md-4">
         <header>
-          <h2>About us</h2>
+          <h2>{{'MAIN_ABOUT_HEADER' | translate}}</h2>
         </header>
-          <p>Here you can read general information about our team, and find content about our performances</p>
-          <p><a class="btn btn-default" href="/about" role="button">View more »</a></p>
+          <p>{{'MAIN_ABOUT_TEXT' | translate}}</p>
+          <p><a class="btn btn-default" href="/about" role="button">
+            {{'MAIN_ABOUT_BUTTON' | translate}} »
+          </a></p>
       </article>
 
       <article class="col-md-4">
         <header>
-          <h2>Feedbacks</h2>
+          <h2>{{'MAIN_FEEDBACK_HEADER' | translate}}</h2>
         </header>
           <p ng-repeat="feedback in data.results">"{{feedback.message}}" ({{feedback.author}})</p>
-          <p><a class="btn btn-default" href="/feedback" role="button">Read more »</a></p>
+          <p><a class="btn btn-default" href="/feedback" role="button">
+            {{'MAIN_FEEDBACK_BUTTON' | translate}} »
+          </a></p>
       </article>
   </div>
 </div>

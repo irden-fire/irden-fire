@@ -18,5 +18,11 @@ angular.module('irdenPage.main', [])
              $scope.data = response.data || "Request failed";
              $scope.status = response.status;
          });
+    /*  var lang = {};
+      var _this = this;
+      $http.get('assets/languages/en_us.json').success(function(data) {
+         _this.lang = data;
+      //   console.log(_this.lang);
+    });*/
 }]);
 })();

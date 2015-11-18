@@ -31,7 +31,6 @@ describe('my app', function() {
       browser.get('index.html/price');
     });
 
-
     it('should render price when user navigates to /price', function() {
       expect(element.all(by.css('[ng-view] p')).first().getText()).
         toMatch(/Here you can find detailed information about our prices/);

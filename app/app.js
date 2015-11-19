@@ -49,6 +49,7 @@ angular
 .module('irdenPage', [
   'ngRoute',
   'ngAnimate',
+  'angular-loading-bar',
   'ngCookies',
   'ui.bootstrap',
   'ngSanitize',

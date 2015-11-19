@@ -5,6 +5,7 @@ angular.module('irdenPage.confirmation', [])
 
 .controller('ConfirmationCtrl', function($scope, $location, $routeParams, $http) {
 
+
    $http({method: 'GET', url: 'http://127.0.0.1:8000/prices/'+$routeParams.param}).
         then(function(response) {
           $scope.status = response.status;
@@ -16,6 +17,7 @@ angular.module('irdenPage.confirmation', [])
 //Initialization params
   $scope.customer = {};
   $scope.customer.price = $routeParams.param;
+  $scope.in_progress = false;
 
 //Initialization date-picker params and function
   $scope.format = 'yyyy-MMMM-dd';
@@ -44,6 +46,7 @@ angular.module('irdenPage.confirmation', [])
 
   //Form post function
   $scope.post = function(){
+    $scope.in_progress = true;
     $http({
       method: 'POST',
       url: 'http://127.0.0.1:8000/orders/',
@@ -51,7 +54,7 @@ angular.module('irdenPage.confirmation', [])
       }).then(function successCallback(response) {
         $location.path('/final').replace();
       }, function errorCallback(response) {
-
+        $scope.in_progress = false;
       });
   };
 
@@ -65,7 +68,7 @@ angular.module('irdenPage.confirmation', [])
                 // Any way to read the results of a "required" angular validator here?
                 var isBlank = viewValue === ''
                 var invalidChars = !isBlank && !/^[A-z0-9]+$/.test(viewValue)
-                var invalidLen = !isBlank && !invalidChars && (viewValue.length < 5 || viewValue.length > 60)
+                var invalidLen = !isBlank && !invalidChars && (viewValue.length < 3 || viewValue.length > 60)
                 ctrl.$setValidity('isBlank', !isBlank)
                 ctrl.$setValidity('invalidChars', !invalidChars)
                 ctrl.$setValidity('invalidLen', !invalidLen)

@@ -1,4 +1,5 @@
 <div class="container" style="margin-top: 50px;">
+
   <div class="row">
     <article>
       <header>
@@ -100,7 +101,7 @@
             </div>
             <hr/>
               <button type="submit" ng-click="post()" class="btn btn-primary"
-              ng-disabled="clientform.$invalid">{{'confirmation.CONFIRMATION_FORM_POST' | translate}}</button>
+              ng-disabled="clientform.$invalid || in_progress">{{'confirmation.CONFIRMATION_FORM_POST' | translate}}</button>
     </form>
         </p>
     </article>

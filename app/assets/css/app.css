@@ -4,8 +4,16 @@ nav .nav, .pagination, .carousel, .panel-title a {
 }
 
 nav .nav .menu_links{
+  color: white;
+  background-color: transparent;
   padding-bottom: 15px;
   padding-top: 15px;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: #eee;
+    color: black;
 }
 
  .btn {
@@ -23,12 +31,12 @@ nav .nav .menu_links{
  .btn:hover .bottom {top: 0px;}
 
   .well.aplha6, .jumbotron.aplha6 {
-   color: darkslateblue;
+   color: #FFFFFF;
    background: rgba(192, 192, 192, 0.6);
  }
 
  #body {
-   color: darkslateblue;
+   color: #FFFFFF;
    background: url(/assets/images/fire2.gif);
  }
 

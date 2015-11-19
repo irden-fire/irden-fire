@@ -15,9 +15,11 @@
     "bootstrap": "3.3.4",
     "angular-animate": "~1.4.7",
     "angular-translate": "~2.8.1",
-    "angular-sanitize": "~1.4.7"
-  },
-  "devDependencies": {
-    "angular-sanitize": "~1.4.7"
+    "angular-sanitize": "~1.4.7",
+    "angular-translate-loader-partial": "~2.8.1",
+    "angular-translate-loader-url": "~2.8.1",
+    "angular-translate-loader-static-files": "~2.8.1",
+    "angular-translate-storage-local": "~2.8.1",
+    "angular-translate-storage-cookie": "~2.8.1"
   }
 }

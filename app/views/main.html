@@ -1,15 +1,14 @@
 <main class="jumbotron" id = 'greetings'>
   <article class="container">
     <header>
-    <h1> {{'MAIN_WELCOME_TEXT' | translate}}</h1>
+    <h1  translate="main.MAIN_WELCOME_TEXT"> </h1>
     <header>
-    <p>
-      {{'MAIN_GREETINGS_TEXT' | translate}}
+    <p translate="main.MAIN_GREETINGS_TEXT">
     </p>
     <p>
       <a class="btn btn-primary btn-lg" href="/price" role="button" id="main_button">
-        <span class="top content">{{'MAIN_ORDER_BUTTON_TOP' | translate}}</span>
-        <span class="bottom content">{{'MAIN_ORDER_BUTTON_BOTTOM' | translate}}</span>
+        <span class="top content" translate="main.MAIN_ORDER_BUTTON_TOP"></span>
+        <span class="bottom content" translate="main.MAIN_ORDER_BUTTON_BOTTOM"></span>
       </a>
     </p>
   </article>
@@ -23,31 +22,31 @@
   <div class="row">
       <article class="col-md-4">
         <header>
-          <h2>{{'MAIN_PRICE_HEADER' | translate}}</h2>
+          <h2 translate="main.MAIN_PRICE_HEADER"></h2>
         </header>
-          <p>{{'MAIN_PRICE_TEXT' | translate}}</p>
-          <p><a class="btn btn-default" href="/price" role="button">
-            {{'MAIN_PRICE_BUTTON' | translate}} »
+          <p translate="main.MAIN_PRICE_TEXT"></p>
+          <p><a class="btn btn-default" href="/price" role="button" translate="main.MAIN_PRICE_BUTTON">
+            »
           </a></p>
       </article>
 
       <article class="col-md-4">
         <header>
-          <h2>{{'MAIN_ABOUT_HEADER' | translate}}</h2>
+          <h2 translate="main.MAIN_ABOUT_HEADER"></h2>
         </header>
-          <p>{{'MAIN_ABOUT_TEXT' | translate}}</p>
-          <p><a class="btn btn-default" href="/about" role="button">
-            {{'MAIN_ABOUT_BUTTON' | translate}} »
+          <p translate="main.MAIN_ABOUT_TEXT"></p>
+          <p><a class="btn btn-default" href="/about" role="button" translate="main.MAIN_ABOUT_BUTTON">
+            »
           </a></p>
       </article>
 
       <article class="col-md-4">
         <header>
-          <h2>{{'MAIN_FEEDBACK_HEADER' | translate}}</h2>
+          <h2 translate="main.MAIN_FEEDBACK_HEADER"></h2>
         </header>
           <p ng-repeat="feedback in data.results">"{{feedback.message}}" ({{feedback.author}})</p>
-          <p><a class="btn btn-default" href="/feedback" role="button">
-            {{'MAIN_FEEDBACK_BUTTON' | translate}} »
+          <p><a class="btn btn-default" href="/feedback" role="button" translate="main.MAIN_FEEDBACK_BUTTON">
+            »
           </a></p>
       </article>
   </div>

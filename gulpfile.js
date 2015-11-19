@@ -118,8 +118,7 @@ gulp.task('publish-components', function() {
         var fontFilter = gulpFilter(['*.eot', '*.woff', '*.svg', '*.ttf']);
 
         return gulp.src(mainBowerFiles())
-
-        // grab style files from bower_components and push in build_dir
+        // grab js files from bower_components and push in build_dir
         .pipe(jsFilter)
         .pipe(uglify())
         .pipe(concat('components.min.js'))

@@ -1,14 +1,14 @@
 <div class="container" style="margin-top: 50px;">
     <article class="">
       <header>
-        <h1>{{'FEEDBACK_MAIN_HEADER' | translate}}</h1>
+        <h1>{{'feedback.FEEDBACK_MAIN_HEADER' | translate}}</h1>
       </header>
-        <p>{{'FEEDBACK_MAIN_TEXT' | translate}}</p>
+        <p>{{'feedback.FEEDBACK_MAIN_TEXT' | translate}}</p>
     </article>
 
     <article>
       <header>
-        <h3>{{'FEEDBACK_FORM_HEADER' | translate}}</h3>
+        <h3>{{'feedback.FEEDBACK_FORM_HEADER' | translate}}</h3>
       </header>
       <form class="form form-horizontal well well-lg" name="feedbackform" novalidate>
         <div class="control-group" ng-class="{ 'has-error' : feedbackform.rate.$invalid &&
@@ -19,23 +19,23 @@
                 titles="['one','two','three']" aria-labelledby="default-rating" required name="rate">
               </uib-rating>
               <div class="help-inline">
-                <p ng-show="feedbackform.rate.$invalid && !feedbackform.rate.$pristine" class="help-block">{{'FEEDBACK_FORM_RATE' | translate}}</p>
+                <p ng-show="feedbackform.rate.$invalid && !feedbackform.rate.$pristine" class="help-block">{{'feedback.FEEDBACK_FORM_RATE' | translate}}</p>
               </div>
         </div>
         <div class="control-group" ng-class="{ 'has-error' : feedbackform.title.$invalid &&
                                                             (!feedbackform.title.$pristine || !feedbackform.title.$dirty)
                                                           }">
-          <label for="title">{{'FEEDBACK_FORM_TITLE' | translate}}</label>
+          <label for="title">{{'feedback.FEEDBACK_FORM_TITLE' | translate}}</label>
           <div class="controls">
             <input  type="text" ng-model="feedback.title" class="form-control" name="title" required
-                    placeholder="{{'FEEDBACK_FORM_TITLE_PLACEHOLDER' | translate}}"
-                    uib-tooltip="{{'FEEDBACK_FORM_TITLE_TOOLTIP' | translate}}"
+                    placeholder="{{'feedback.FEEDBACK_FORM_TITLE_PLACEHOLDER' | translate}}"
+                    uib-tooltip="{{'feedback.FEEDBACK_FORM_TITLE_TOOLTIP' | translate}}"
                     tooltip-placement="top"
                     tooltip-trigger="mouseenter"
                     tooltip-enable="!feedback.title"
             />
             <div class="help-inline">
-              <p ng-show="feedbackform.title.$invalid && !feedbackform.title.$pristine" class="help-block">{{'FEEDBACK_FORM_TITLE_REQUIRED' | translate}}</p>
+              <p ng-show="feedbackform.title.$invalid && !feedbackform.title.$pristine" class="help-block">{{'feedback.FEEDBACK_FORM_TITLE_REQUIRED' | translate}}</p>
             </div>
           </div>
         </div>
@@ -43,17 +43,17 @@
         <div class="control-group" ng-class="{ 'has-error' : feedbackform.message.$invalid &&
                                                             (!feedbackform.message.$pristine || !feedbackform.message.$dirty)
                                                           }">
-          <label for="message">{{'FEEDBACK_FORM_MESSAGE' | translate}}</label>
+          <label for="message">{{'feedback.FEEDBACK_FORM_MESSAGE' | translate}}</label>
           <div class="controls">
             <textarea ng-model="feedback.message" class="form-control" rows="5" name="message" required
-                      placeholder="{{'FEEDBACK_FORM_MESSAGE_PLACEHOLDER' | translate}}"
-                      uib-tooltip="{{'FEEDBACK_FORM_MESSAGE_TOOLTIP' | translate}}"
+                      placeholder="{{'feedback.FEEDBACK_FORM_MESSAGE_PLACEHOLDER' | translate}}"
+                      uib-tooltip="{{'feedback.FEEDBACK_FORM_MESSAGE_TOOLTIP' | translate}}"
                       tooltip-placement="top"
                       tooltip-trigger="mouseenter"
                       tooltip-enable="!feedback.message"
               /></textarea>
             <div class="help-inline">
-              <p ng-show="feedbackform.message.$invalid && !feedbackform.message.$pristine" class="help-block">{{'FEEDBACK_FORM_MESSAGE_REQUIRED' | translate}}</p>
+              <p ng-show="feedbackform.message.$invalid && !feedbackform.message.$pristine" class="help-block">{{'feedback.FEEDBACK_FORM_MESSAGE_REQUIRED' | translate}}</p>
             </div>
           </div>
         </div>
@@ -61,17 +61,17 @@
         <div class="control-group" ng-class="{ 'has-error' : feedbackform.author.$invalid &&
                                                             (!feedbackform.author.$pristine || !feedbackform.author.$dirty)
                                                           }">
-          <label for="author">{{'FEEDBACK_FORM_AUTHOR' | translate}}</label>
+          <label for="author">{{'feedback.FEEDBACK_FORM_AUTHOR' | translate}}</label>
           <div class="controls">
             <input type="text" ng-model="feedback.author" class="form-control" name="author" required
-                    placeholder="{{'FEEDBACK_FORM_AUTHOR_PLACEHOLDER' | translate}}"
-                    uib-tooltip="{{'FEEDBACK_FORM_AUTHOR_TOOLTIP' | translate}}"
+                    placeholder="{{'feedback.FEEDBACK_FORM_AUTHOR_PLACEHOLDER' | translate}}"
+                    uib-tooltip="{{'feedback.FEEDBACK_FORM_AUTHOR_TOOLTIP' | translate}}"
                     tooltip-placement="top"
                     tooltip-trigger="mouseenter"
                     tooltip-enable="!feedback.author"
             />
             <div class="help-inline">
-              <p ng-show="feedbackform.author.$invalid && !feedbackform.author.$pristine" class="help-block">{{'FEEDBACK_FORM_AUTHOR_REQUIRED' | translate}}</p>
+              <p ng-show="feedbackform.author.$invalid && !feedbackform.author.$pristine" class="help-block">{{'feedback.FEEDBACK_FORM_AUTHOR_REQUIRED' | translate}}</p>
             </div>
           </div>
         </div>
@@ -79,25 +79,25 @@
         <div class="control-group" ng-class="{ 'has-error' : feedbackform.email.$invalid &&
                                                             (!feedbackform.email.$pristine || !feedbackform.email.$dirty)
                                                           }">
-          <label for="email">{{'FEEDBACK_FORM_EMAIL' | translate}}</label>
+          <label for="email">{{'feedback.FEEDBACK_FORM_EMAIL' | translate}}</label>
           <div class="controls">
             <input type="email" ng-model="feedback.email" required
                     class="form-control" name="email"
-                    placeholder="{{'FEEDBACK_FORM_EMAIL_PLACEHOLDER' | translate}}"
-                    uib-tooltip="{{'FEEDBACK_FORM_EMAIL_TOOLTIP' | translate}}"
+                    placeholder="{{'feedback.FEEDBACK_FORM_EMAIL_PLACEHOLDER' | translate}}"
+                    uib-tooltip="{{'feedback.FEEDBACK_FORM_EMAIL_TOOLTIP' | translate}}"
                     tooltip-placement="top"
                     tooltip-trigger="mouseenter"
                     tooltip-enable="!feedback.email"/>
 
             <div class="help-inline" ng-show="feedbackform.email.$invalid && !feedbackform.email.$pristine">
-                  <span ng-show="feedbackform.email.$required">{{'FEEDBACK_FORM_EMAIL_REQUIRED' | translate}}</span>
-                  <span ng-show="feedbackform.email.$invalid">{{'FEEDBACK_FORM_EMAIL_INVALID' | translate}}</span>
+                  <span ng-show="feedbackform.email.$required">{{'feedback.FEEDBACK_FORM_EMAIL_REQUIRED' | translate}}</span>
+                  <span ng-show="feedbackform.email.$invalid">{{'feedback.FEEDBACK_FORM_EMAIL_INVALID' | translate}}</span>
                   <p  class="help-block">Wrong email.</p>
             </div>
           </div>
         </div>
         <hr/>
-          <button ng-click="post()" translate="FEEDBACK_FORM_SUBMIT" class="btn btn-primary" ng-disabled="feedbackform.$invalid">
+          <button ng-click="post()" translate="feedback.FEEDBACK_FORM_SUBMIT" class="btn btn-primary" ng-disabled="feedbackform.$invalid">
           </button>
       </form>
     </article>

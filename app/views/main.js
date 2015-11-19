@@ -4,6 +4,7 @@
 angular.module('irdenPage.main', [])
 
 .controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
+
   /**
     @function getFeedbacksList
     @param method - HTTP method

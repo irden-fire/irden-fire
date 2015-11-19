@@ -2,39 +2,39 @@
   <div class="row">
     <article>
       <header>
-        <h1>{{'PRICE_MAIN_HEADER' | translate}}</h1>
+        <h1>{{'price.PRICE_MAIN_HEADER' | translate}}</h1>
       </header>
-        <p>{{'PRICE_MAIN_TEXT' | translate}}</p>
+        <p>{{'price.PRICE_MAIN_TEXT' | translate}}</p>
     </article>
   </div>
 
 <div class="row">
-  <h2>{{'PRICE_DETAIL_HEADER' | translate}}</h2>
-  <p>{{'PRICE_DETAIL_TEXT' | translate}}</p>
+  <h2>{{'price.PRICE_DETAIL_HEADER' | translate}}</h2>
+  <p>{{'price.PRICE_DETAIL_TEXT' | translate}}</p>
   <uib-accordion close-others="oneAtATime">
 
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>{{'PRICE_TABLE_CHOOSE' | translate}}</th>
-        <th>{{'PRICE_TABLE_NAME' | translate}}</th>
-        <th>{{'PRICE_TABLE_COST' | translate}}</th>
-        <th>{{'PRICE_TABLE_DURATION' | translate}}</th>
-        <th>{{'PRICE_TABLE_PARTICIPANTS' | translate}}</th>
-        <th>{{'PRICE_TABLE_DESCRIPTION' | translate}}</th>
+        <th>{{'price.PRICE_TABLE_CHOOSE' | translate}}</th>
+        <th>{{'price.PRICE_TABLE_NAME' | translate}}</th>
+        <th>{{'price.PRICE_TABLE_COST' | translate}}</th>
+        <th>{{'price.PRICE_TABLE_DURATION' | translate}}</th>
+        <th>{{'price.PRICE_TABLE_PARTICIPANTS' | translate}}</th>
+        <th>{{'price.PRICE_TABLE_DESCRIPTION' | translate}}</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="program in data.results">
         <td>
-          <a href="confirmation/{{program.id}}" class="btn btn-default">{{'PRICE_TABLE_CHOOSE_BUTTON' | translate}}</a>
+          <a href="confirmation/{{program.id}}" class="btn btn-default">{{'price.PRICE_TABLE_CHOOSE_BUTTON' | translate}}</a>
         </td>
         <td>{{program.name}}</td>
         <td>{{program.cost}}$</td>
         <td>{{program.duration}} min</td>
         <td>{{program.how_many_participants}}</td>
         <td>
-        <button type="button" class="form-control btn-default" ng-click="isCollapsed = !isCollapsed">{{'PRICE_TABLE_BUTTON' | translate}}</button>
+        <button type="button" class="form-control btn-default" ng-click="isCollapsed = !isCollapsed">{{'price.PRICE_TABLE_BUTTON' | translate}}</button>
         <div uib-collapse="isCollapsed">
           <div class="well well-lg">{{program.description}}</div>
         </div>

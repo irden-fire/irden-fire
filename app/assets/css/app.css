@@ -22,15 +22,20 @@ nav .nav .menu_links{
  .bottom { top: 100px; }
  .btn:hover .bottom {top: 0px;}
 
- #greetings {
+  .well.aplha6, .jumbotron.aplha6 {
    color: darkslateblue;
-   background: url(/assets/fire1.gif);
+   background: rgba(192, 192, 192, 0.6);
+ }
+
+ #body {
+   color: darkslateblue;
+   background: url(/assets/images/fire2.gif);
  }
 
  #lava-scroll {
    width: 100%;
    height: auto;
-   background: url(/assets/all.png) repeat-y;
+   background: url(/assets/images/all.png) repeat-y;
    -webkit-animation: backgroundScroll 20s linear infinite;
    animation: backgroundScroll 20s linear infinite; /* Adjust timing here according to speed required */
   }

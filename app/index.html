@@ -26,19 +26,19 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
         <ul class="nav nav-pills navbar-right">
+          <li><a ng-click="changeLanguage('ru')" translate="menu.BUTTON_TEXT_RU" class="menu_links btn-default"></a></li>
+          <li><a ng-click="changeLanguage('en')" translate="menu.BUTTON_TEXT_EN" class="menu_links btn-default"></a></li>
+        </ul>
+        <ul class="nav nav-pills navbar-right">
           <li><a href="main" class="menu_links" translate="menu.MENU_MAIN"></a></li>
           <li><a href="price" class="menu_links" translate="menu.MENU_PRICE"></a></li>
           <li><a href="about" class="menu_links" translate="menu.MENU_ABOUT"></a></li>
           <li><a href="feedback" class="menu_links" translate="menu.MENU_FEEDBACKS"></a></li>
-          <li>
-            <button ng-click="changeLanguage('ru')" translate="menu.BUTTON_TEXT_RU" class="menu_links btn-default"></button>
-            <button ng-click="changeLanguage('en')" translate="menu.BUTTON_TEXT_EN" class="menu_links btn-default"></button>
-          </li>
         </ul>
       </div>
     </div>
   </nav>
-<div id='body'>
+<div id="body">
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

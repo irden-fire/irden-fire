@@ -10,7 +10,7 @@
       <header>
         <h3>{{'feedback.FEEDBACK_FORM_HEADER' | translate}}</h3>
       </header>
-      <form class="form form-horizontal well well-lg" name="feedbackform" novalidate>
+      <form class="form form-horizontal well well-lg aplha6" name="feedbackform" novalidate>
         <div class="control-group" ng-class="{ 'has-error' : feedbackform.rate.$invalid &&
                                                             (!feedbackform.rate.$pristine || !feedbackform.rate.$dirty)
                                                           }">
@@ -102,7 +102,7 @@
       </form>
     </article>
 
-    <article ng-repeat="feedback in data.results" class="well">
+    <article ng-repeat="feedback in data.results" class="well aplha6">
       <header>
         <h3>{{feedback.title}}</h3>
         <uib-rating ng-model="feedback.rate" max="max" readonly="true"

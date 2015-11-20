@@ -96,6 +96,8 @@
       "FEEDBACK_FORM_TITLE_PLACEHOLDER": "Здесь необходимо указать заголовок сообщения",
       "FEEDBACK_FORM_TITLE_TOOLTIP": "Напишите заголовок, пожалуйста",
 
+      "FEEDBACK_FORM_RATE_TOOLTIP": "Оцените, пожалуйста(1-10)",
+
       "FEEDBACK_FORM_MESSAGE": "Текст отзыва:",
       "FEEDBACK_FORM_MESSAGE_PLACEHOLDER": "Здесь необходимо коротко описать ваши впечатления",
       "FEEDBACK_FORM_MESSAGE_TOOLTIP": "Опишите ваши впечатления, пожалуйста",

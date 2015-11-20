@@ -33,14 +33,14 @@ angular.module('irdenPage.feedback', [])
      @param data - just form data which saved in object
      @return result of saving data
    */
-   $scope.postFeedback = function(data){
+   $scope.postFeedback = function(){
       $http({
         method: 'POST',
         url: 'http://127.0.0.1:8000/feedbacks/',
-        data: data
+        data: $scope.feedback
         }).then(function successCallback(response) {
-
           $scope.getFeedbacksList();
+          $scope.feedback = {};
         }, function errorCallback(response) {
 
         });

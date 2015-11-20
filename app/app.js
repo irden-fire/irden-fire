@@ -11,6 +11,7 @@ function config ($routeProvider, $locationProvider, $httpProvider, $translatePro
       templateUrl: '/views/about_us.html',
       controller: 'AboutUsCtrl',
     })
+
     .when('/feedback', {
       templateUrl: '/views/feedback.html',
       controller: 'FeedbackCtrl',

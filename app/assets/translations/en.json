@@ -56,7 +56,9 @@
 
   "feedback":
   {
-    "FEEDBACK_FORM_RATE": "Rate it please",
+    "FEEDBACK_FORM_RATE": "Rate it please(1-10)",
+    "FEEDBACK_FORM_RATE_TOOLTIP": "Score us, please",
+
 
     "FEEDBACK_MAIN_HEADER": "Feedback",
     "FEEDBACK_MAIN_TEXT": "Here you can leave feedback if you want",

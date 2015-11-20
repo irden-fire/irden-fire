@@ -11,20 +11,25 @@
         <h3>{{'feedback.FEEDBACK_FORM_HEADER' | translate}}</h3>
       </header>
       <form class="form form-horizontal well well-lg aplha6" name="feedbackform" novalidate>
-        <div class="control-group" ng-class="{ 'has-error' : feedbackform.rate.$invalid &&
-                                                            (!feedbackform.rate.$pristine || !feedbackform.rate.$dirty)
+        <div class="control-group" ng-class="{ 'has-error' : (feedbackform.rate.$invalid &&
+                                                            (!feedbackform.rate.$pristine || !feedbackform.rate.$dirty)) || !feedback.rate
                                                           }">
               <uib-rating ng-model="feedback.rate" max="max" readonly="isReadonly"
                 on-hover="hoveringOver(value)" on-leave="overStar = null"
-                titles="['one','two','three']" aria-labelledby="default-rating" required name="rate">
+                titles="['one','two','three']" aria-labelledby="default-rating" required name="rate"
+                uib-tooltip="{{'feedback.FEEDBACK_FORM_RATE_TOOLTIP' | translate}}"
+                tooltip-placement="top"
+                tooltip-trigger="mouseenter"
+                tooltip-enable="!feedback.rate"
+                >
               </uib-rating>
               <div class="help-inline">
-                <p ng-show="feedbackform.rate.$invalid && !feedbackform.rate.$pristine" class="help-block">{{'feedback.FEEDBACK_FORM_RATE' | translate}}</p>
+                <p ng-show="(feedbackform.rate.$invalid && !feedbackform.rate.$pristine) || !feedback.rate" class="help-block">{{'feedback.FEEDBACK_FORM_RATE' | translate}}</p>
               </div>
         </div>
         <div class="control-group" ng-class="{ 'has-error' : feedbackform.title.$invalid &&
                                                             (!feedbackform.title.$pristine || !feedbackform.title.$dirty)
-                                                          }">translate
+                                                          }">
           <label for="title">{{'feedback.FEEDBACK_FORM_TITLE' | translate}}</label>
           <div class="controls">
             <input  type="text" ng-model="feedback.title" class="form-control" name="title" required

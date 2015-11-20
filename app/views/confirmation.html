@@ -78,9 +78,9 @@
             </div>
             <div class="control-group">
               <label for="desired_date" class="control-label">{{'confirmation.CONFIRMATION_FORM_DATE' | translate}}</label>
-              <div class="controls">
-                <input type="date" name="desired_date" class="form-control"
-                        uib-datepicker-popup ng-model="customer.desired_date" is-open="status.opened"
+              <div class="input-group">
+                <input type="text" name="desired_date" class="form-control"
+                        uib-datepicker-popup={{format}} ng-model="customer.desired_date" is-open="calendar_status.opened"
                         min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
                         ng-required="true" close-text="Close"
                         placeholder="{{'confirmation.CONFIRMATION_FORM_DATE_PLACEHOLDER' | translate}}"
@@ -89,6 +89,9 @@
                         tooltip-trigger="mouseenter"
                         tooltip-enable="!customer.desired_date"
                         />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
               </div>
             </div>
             <div class="control-group">

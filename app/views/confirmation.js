@@ -32,12 +32,12 @@ angular.module('irdenPage.confirmation', [])
     startingDay: 1
   };
 
-  $scope.status = {
+  $scope.calendar_status = {
     opened: false
   };
 
   $scope.open = function($event) {
-    $scope.status.opened = true;
+    $scope.calendar_status.opened = true;
   };
 //Initialization time-picker params and functions
   $scope.hstep = 1;

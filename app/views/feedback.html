@@ -24,7 +24,7 @@
         </div>
         <div class="control-group" ng-class="{ 'has-error' : feedbackform.title.$invalid &&
                                                             (!feedbackform.title.$pristine || !feedbackform.title.$dirty)
-                                                          }">
+                                                          }">translate
           <label for="title">{{'feedback.FEEDBACK_FORM_TITLE' | translate}}</label>
           <div class="controls">
             <input  type="text" ng-model="feedback.title" class="form-control" name="title" required
@@ -97,7 +97,7 @@
           </div>
         </div>
         <hr/>
-          <button ng-click="post()" translate="feedback.FEEDBACK_FORM_SUBMIT" class="btn btn-primary" ng-disabled="feedbackform.$invalid">
+          <button ng-click="postFeedback()" translate="feedback.FEEDBACK_FORM_SUBMIT" class="btn btn-primary" ng-disabled="feedbackform.$invalid">
           </button>
       </form>
     </article>

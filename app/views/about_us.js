@@ -3,7 +3,7 @@
 
 angular.module('irdenPage.about_us', [])
 
-.controller('AboutUsCtrl', [function() {
+  .controller('AboutUsCtrl', [function() {
 
-}]);
+  }]);
 })();

@@ -45,7 +45,7 @@ nav .nav .menu_links{
    height: auto;
    background: url(/assets/images/all.png) repeat-y;
    -webkit-animation: backgroundScroll 20s linear infinite;
-   animation: backgroundScroll 20s linear infinite; /* Adjust timing here according to speed required */
+   animation: backgroundScroll 40s linear infinite; /* Adjust timing here according to speed required */
   }
 
   @-webkit-keyframes backgroundScroll {

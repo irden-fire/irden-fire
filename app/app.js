@@ -54,6 +54,7 @@ angular
   'ngCookies',
   'ui.bootstrap',
   'ngSanitize',
+  'ui.mask',
   'pascalprecht.translate',
   'irdenPage.about_us',
   'irdenPage.main',

@@ -50,6 +50,8 @@
                         tooltip-placement="top"
                         tooltip-trigger="mouseenter"
                         tooltip-enable="!customer.contact_number"
+                        ui-mask="+999 (99) 999-99-99"  
+                        ui-mask-placeholder ui-mask-placeholder-char="_"
                 />
                 <div class="help-inline">
                   <p ng-show="clientform.phone.$invalid && !clientform.phone.$pristine" class="help-block">

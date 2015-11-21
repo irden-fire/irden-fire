@@ -19,7 +19,7 @@ var gulp = require('gulp'),
 var files = require('./gulp/gulp.config.js');
 
 gulp.task('default', function(callback){
-  runSequence('build','watch','server', callback);
+  runSequence('build','watch','server','watch-css', callback);
 });
 
 /**
@@ -52,7 +52,30 @@ gulp.task('server', function() {
       host: '0.0.0.0',
       fallback: path.join(__dirname,files.build_dir+'/index.html'),
       livereload: true
+      //directoryListing: path.join(__dirname,files.build_dir+'/assets/'),
     });
+});
+
+/**
+  *Task watch-css watch changes in ./app/assets/*.css files
+  *and when one of them changed, it starts live-reload task,
+  *which copy css to the build direcory and then, reload this directory in the
+  *browser
+  */
+gulp.task('css-reload', function () {
+  gulp.src('./build/css/*.css')
+    .pipe(connect.reload());
+});
+
+gulp.task('live-reload', function(callback){
+  runSequence(
+    'publish-app-css',
+    'css-reload',
+    callback);
+});
+
+gulp.task('watch-css', function () {
+  gulp.watch(['./app/assets/**/*.css'], ['live-reload']);
 });
 
 /**

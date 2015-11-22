@@ -1,5 +1,6 @@
 // Please place all dependencies in this section
 var gulp = require('gulp'),
+    bower = require('gulp-bower'),
     plugins = require('gulp-load-plugins')(),
     del = require('del'),
     runSequence = require('run-sequence'),
@@ -38,6 +39,7 @@ gulp.task('karma', function (done) {
   */
 gulp.task('build', function(callback){
   runSequence(
+    'bower',
     'clean',
     'copy-build',
     'index',
@@ -79,7 +81,14 @@ gulp.task('watch-css', function () {
 });
 
 /**
-  * This tast inject all dependencies to index.html file.
+  *This task install all bower components
+  *
+  */
+  gulp.task('bower', function() {
+    return bower();
+  });
+/**
+  * This task inject all dependencies to index.html file.
   * If you dependency didn't inject please check config file:
   * ./gulp/gulp.config.js
   * In this files you need to add path to you dependency in var: app_files.tpl_src

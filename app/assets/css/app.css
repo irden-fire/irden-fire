@@ -10,6 +10,10 @@ nav .nav .menu_links{
   padding-top: 15px;
 }
 
+label.menu_label{
+  color: white;
+}
+
 .nav>li>a:focus, .nav>li>a:hover {
     text-decoration: none;
     background-color: #eee;
@@ -33,6 +37,10 @@ nav .nav .menu_links{
   .well.aplha6, .jumbotron.aplha6 {
    color: #FFFFFF;
    background: rgba(192, 192, 192, 0.6);
+ }
+
+ .well.login {
+   color: #000000;
  }
 
  #body {

@@ -4,18 +4,20 @@
 angular.module('irdenPage.confirmation', [])
 
 .controller('ConfirmationCtrl', function($scope, $location, $routeParams, $http) {
+  // $scope.customer = {};
 
-
-   $http({method: 'GET', url: 'http://127.0.0.1:8000/prices/'+$routeParams.param}).
+   $http({method: 'GET', url: 'http://127.0.0.1:8000/prices/'+$routeParams.param+'/'}).
         then(function(response) {
-          $scope.status = response.status;
-          $scope.data = response.data;
+          $scope.confirming_order = response.data;
         }, function(response) {
-          $scope.data = response.data || "Request failed";
-          $scope.status = response.status;
+          $scope.confirming_order = response.data || "Request failed";
       });
+
+//  $scope.getUserData = function(){
+
+//   }
+
 //Initialization params
-  $scope.customer = {};
   $scope.customer.price = $routeParams.param;
   $scope.in_progress = false;
 

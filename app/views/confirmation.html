@@ -4,17 +4,18 @@
     <article>
       <header>
         <h1>{{'confirmation.CONFIRMATION_MAIN_HEADER' | translate}}</h1>
+        Hi: {{customer.client_name}}
       </header>
         <p>{{'confirmation.CONFIRMATION_CHOOSEN_HEADER' | translate}}
           <article class="well well-lg aplha6">
             <header>
-              <h4>{{'confirmation.CONFIRMATION_CHOOSEN_NAME' | translate}} {{data.name}}</h4>
+              <h4>{{'confirmation.CONFIRMATION_CHOOSEN_NAME' | translate}} {{confirming_order.name}}</h4>
             </header>
             <p>
-              {{'confirmation.CONFIRMATION_CHOOSEN_COST' | translate}} {{data.cost}}$
+              {{'confirmation.CONFIRMATION_CHOOSEN_COST' | translate}} {{confirming_order.cost}}$
             </p>
             <p>
-              {{'confirmation.CONFIRMATION_CHOOSEN_DESCRIPTION' | translate}} {{data.description}}
+              {{'confirmation.CONFIRMATION_CHOOSEN_DESCRIPTION' | translate}} {{confirming_order.description}}
             </p>
           </article>
         </p>
@@ -50,7 +51,7 @@
                         tooltip-placement="top"
                         tooltip-trigger="mouseenter"
                         tooltip-enable="!customer.contact_number"
-                        ui-mask="+999 (99) 999-99-99"  
+                        ui-mask="+999 (99) 999-99-99"
                         ui-mask-placeholder ui-mask-placeholder-char="_"
                 />
                 <div class="help-inline">

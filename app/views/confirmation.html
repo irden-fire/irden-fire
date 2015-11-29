@@ -4,7 +4,6 @@
     <article>
       <header>
         <h1>{{'confirmation.CONFIRMATION_MAIN_HEADER' | translate}}</h1>
-        Hi: {{customer.client_name}}
       </header>
         <p>{{'confirmation.CONFIRMATION_CHOOSEN_HEADER' | translate}}
           <article class="well well-lg aplha6">
@@ -20,18 +19,18 @@
           </article>
         </p>
         <p>
-          <form class="form form-horizontal" name="clientform" novalidate>
+          <form class="form form-horizontal well well-lg aplha6" name="clientform" novalidate>
             <div class="control-group" ng-class="{ 'has-error' : clientform.username.$invalid &&
                                                                 (!clientform.username.$pristine || !clientform.username.$dirty)
                                                               }">
               <label for="name" class="control-label">{{'confirmation.CONFIRMATION_FORM_NAME' | translate}}</label>
               <div class="controls">
-                <input type="text" ng-model="customer.client_name" class="form-control" name="username" required
+                <input type="text" ng-model="customer.user_data.client_name" class="form-control" name="username" required
                   placeholder="{{'confirmation.CONFIRMATION_FORM_NAME_PLACEHOLDER' | translate}}"
                   uib-tooltip="{{'confirmation.CONFIRMATION_FORM_NAME_TOOLTIP' | translate}}"
                   tooltip-placement="top"
                   tooltip-trigger="mouseenter"
-                  tooltip-enable="!customer.client_name"
+                  tooltip-enable="!customer.user_data.client_name"
                 />
                   <div class="help-inline">
                     <p ng-show="clientform.username.$invalid && !clientform.username.$pristine" class="help-block">
@@ -45,12 +44,12 @@
                                                               }">
               <label for="phone" class="control-label">{{'confirmation.CONFIRMATION_FORM_PHONE' | translate}}</label>
               <div class="controls">
-                <input type="text" ng-model="customer.contact_number" class="form-control" name="phone" required
+                <input type="text" ng-model="customer.user_data.contact_number" class="form-control" name="phone" required
                         placeholder="{{'confirmation.CONFIRMATION_FORM_PHONE_PLACEHOLDER' | translate}}"
                         uib-tooltip="{{'confirmation.CONFIRMATION_FORM_PHONE_TOOLTIP' | translate}}"
                         tooltip-placement="top"
                         tooltip-trigger="mouseenter"
-                        tooltip-enable="!customer.contact_number"
+                        tooltip-enable="!customer.user_data.contact_number"
                         ui-mask="+999 (99) 999-99-99"
                         ui-mask-placeholder ui-mask-placeholder-char="_"
                 />
@@ -65,13 +64,13 @@
                                                               }">
               <label for="email" class="control-label">{{'confirmation.CONFIRMATION_FORM_EMAIL' | translate}}</label>
               <div class="controls">
-                <input type="email" ng-model="customer.email" required
+                <input type="email" ng-model="customer.user_data.email" required
                         class="form-control" name="email"
                         placeholder="{{'confirmation.CONFIRMATION_FORM_EMAIL_PLACEHOLDER' | translate}}"
                         uib-tooltip="{{'confirmation.CONFIRMATION_FORM_EMAIL_TOOLTIP' | translate}}"
                         tooltip-placement="top"
                         tooltip-trigger="mouseenter"
-                        tooltip-enable="!customer.email"
+                        tooltip-enable="!customer.user_data.email"
                         />
                 <div class="help-inline">
                       <p ng-show="clientform.email.$invalid && !clientform.email.$pristine" class="help-block">
@@ -83,7 +82,7 @@
               <label for="desired_date" class="control-label">{{'confirmation.CONFIRMATION_FORM_DATE' | translate}}</label>
               <div class="input-group">
                 <input type="text" name="desired_date" class="form-control"
-                        uib-datepicker-popup={{format}} ng-model="customer.desired_date" is-open="calendar_status.opened"
+                        uib-datepicker-popup={{format}} ng-model="customer.order.desired_date" is-open="calendar_status.opened"
                         min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
                         ng-required="true" close-text="Close"
                         placeholder="{{'confirmation.CONFIRMATION_FORM_DATE_PLACEHOLDER' | translate}}"
@@ -100,11 +99,37 @@
             <div class="control-group">
               <label for="desired_time" class="control-label">{{'confirmation.CONFIRMATION_FORM_TIME' | translate}}</label>
               <div class="controls">
-                <uib-timepicker ng-model="customer.desired_date" name="desired_time"
+                <uib-timepicker ng-model="customer.order.desired_date" name="desired_time"
                                 hour-step="hstep" minute-step="mstep" show-meridian="ismeridian">
                 </uib-timepicker>
               </div>
             </div>
+            <div class="form-group" ng-show="weInSystem == false">
+              <label class="control-label" translate="final.LABEL_REGISTER_CHECKBOX">Regisret me:</label>
+              <input type="checkbox" class="form-control" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed"/>
+            </div>
+              <div uib-collapse="isCollapsed" class="well well-lg aplha6">
+                  <div class="form-group" >
+                    <label class="menu_label" translate="final.LABEL_USERNAME">Username:</label>
+                    <input type="text" ng-model="user.username" class="form-control"
+                           placeholder="{{'final.PLACEHOLDER_USERNAME' | translate}}"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label class="menu_label" translate="final.LABEL_PASSWORD">Password:</label>
+                    <input type="password" ng-model="user.password" class="form-control"
+                           placeholder="{{'final.PLACEHOLDER_PASSWORD' | translate}}"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label class="menu_label" translate="final.LABEL_PASSWORD_REPEAT">Password:</label>
+                    <input type="password" ng-model="user.password2" class="form-control"
+                           placeholder="{{'final.PLACEHOLDER_PASSWORD_REPEAT' | translate}}"
+                    />
+                  </div>
+                </div>
             <hr/>
               <button type="submit" ng-click="post()" class="btn btn-primary"
               ng-disabled="clientform.$invalid || in_progress">{{'confirmation.CONFIRMATION_FORM_POST' | translate}}</button>

@@ -34,7 +34,7 @@ label.menu_label{
  .bottom { top: 100px; }
  .btn:hover .bottom {top: 0px;}
 
-  .well.aplha6, .jumbotron.aplha6 {
+  .well.aplha6, .jumbotron.aplha6{
    color: #FFFFFF;
    background: rgba(192, 192, 192, 0.6);
  }

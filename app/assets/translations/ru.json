@@ -7,7 +7,17 @@
       "MENU_MAIN": "Главная",
       "MENU_PRICE": "Услуги",
       "MENU_ABOUT": "О нас",
-      "MENU_FEEDBACKS": "Отзывы"
+      "MENU_FEEDBACKS": "Отзывы",
+
+      "LABEL_USERNAME": "Логин:",
+      "PLACEHOLDER_USERNAME": "Введите логин",
+
+      "LABEL_PASSWORD": "Пароль:",
+      "PLACEHOLDER_PASSWORD": "Введите пароль",
+
+      "BUTTON_LOGIN": "Войти",
+      "BUTTON_LOGOUT": "Выйти",
+      "TEXT_GREETINGS": "Привет, "
     },
 
     "main":
@@ -78,14 +88,6 @@
 
       "CONFIRMATION_FORM_POST": "Отправить"
     },
-
-    "final":
-    {
-      "FINAL_MAIN_HEADER": "Спасибо вам!",
-      "FINAL_MAIN_TEXT": "Спасибо за ваш заказ, мы скоро свяжемся с вами",
-      "FINAL_RETURN_BUTTON": "Вернуться на главную"
-    },
-
     "feedback":
     {
       "FEEDBACK_MAIN_HEADER": "Отзывы",
@@ -117,8 +119,27 @@
       "FEEDBACK_FORM_TITLE_REQUIRED": "Введите заголовок",
       "FEEDBACK_FORM_RATE": "Оцените, пожалуйста",
       "FEEDBACK_FORM_AUTHOR_REQUIRED": "Укажите ваше имя"
-    },
 
+    },
+    "final":
+    {
+      "FINAL_MAIN_HEADER": "Спасибо вам!",
+      "FINAL_MAIN_TEXT": "Спасибо за ваш заказ, мы скоро свяжемся с вами",
+      "FINAL_RETURN_BUTTON": "Вернуться на главную",
+
+      "LABEL_REGISTER_CHECKBOX": "Зарегестрировать в системе (После этого мы будем хранить вашу персональную информацию на сервере)",
+
+      "LABEL_USERNAME": "Логин:",
+      "PLACEHOLDER_USERNAME": "Введите желаемый логин",
+
+      "LABEL_PASSWORD": "Пароль:",
+      "PLACEHOLDER_PASSWORD": "Введите пароль",
+
+      "LABEL_PASSWORD_REPEAT": "Повторите:",
+      "PLACEHOLDER_PASSWORD_REPEAT": "Повторите ввод",
+
+      "BUTTON_REGISTER": "Зарегестрируйте меня!"
+    },
     "about":
     {
       "ABOUT_MAIN_HEADER": "О нас",

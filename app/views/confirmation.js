@@ -6,7 +6,7 @@ angular.module('irdenPage.confirmation', [])
 .controller('ConfirmationCtrl', function($scope, $location, $routeParams, $http) {
   // $scope.customer = {};
 
-   $http({method: 'GET', url: 'http://127.0.0.1:8000/prices/'+$routeParams.param+'/'}).
+   $http({method: 'GET', url: 'http://127.0.0.1:8000/prices/'+$routeParams.price+'/'}).
         then(function(response) {
           $scope.confirming_order = response.data;
         }, function(response) {
@@ -18,7 +18,9 @@ angular.module('irdenPage.confirmation', [])
 //   }
 
 //Initialization params
-  $scope.customer.price = $routeParams.param;
+  $scope.user = {};
+  $scope.customer.order = {};
+  $scope.customer.order.price = $routeParams.price;
   $scope.in_progress = false;
 
 //Initialization date-picker params and function
@@ -49,10 +51,31 @@ angular.module('irdenPage.confirmation', [])
   //Form post function
   $scope.post = function(){
     $scope.in_progress = true;
+    //TODO clean this mess up!!!!
+    console.log('length:');
+    console.log(Object.keys($scope.user).length);
+    if(Object.keys($scope.user).length != 0){
+      $scope.preparedData = {
+        client_name: $scope.customer.user_data.client_name,
+        contact_number: $scope.customer.user_data.contact_number,
+        email: $scope.customer.user_data.email,
+        user: {username: $scope.user.username, password: $scope.user.password},
+        orders: [$scope.customer.order]
+      };
+    }
+    else{
+      $scope.preparedData = {
+        client_name: $scope.customer.user_data.client_name,
+        contact_number: $scope.customer.user_data.contact_number,
+        email: $scope.customer.user_data.email,
+        orders: [$scope.customer.order]
+      };
+    }
+
     $http({
       method: 'POST',
-      url: 'http://127.0.0.1:8000/orders/',
-      data: $scope.customer
+      url: 'http://127.0.0.1:8000/create_user_data/',
+      data: $scope.preparedData
       }).then(function successCallback(response) {
         $location.path('/final').replace();
       }, function errorCallback(response) {

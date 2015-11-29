@@ -20,7 +20,7 @@ function config ($routeProvider, $locationProvider, $httpProvider, $translatePro
       templateUrl: '/views/price.html',
       controller: 'PriceCtrl',
     })
-    .when('/confirmation/:param', {
+    .when('/confirmation/:price', {
       templateUrl: '/views/confirmation.html',
       controller: 'ConfirmationCtrl',
     })
@@ -67,26 +67,33 @@ angular
 .config(config)
 .controller('TranslateController', function($translate, $scope, $http, AuthTokenFactory) {
   $scope.customer = {};
+  $scope.customer.user_data = {};
+  $scope.weInSystem = false;
 
   $scope.changeLanguage = function (langKey) {
     $translate.use(langKey);
     console.log("lang:"+langKey);
   };
 
-  this.getUserData = function(){
+//TODO make one service, which can login or register user, and change form data at the same time
+//TODO deside how check is we in system or not
+  $scope.getUserData = function(){
      $http({method: 'GET', url: 'http://127.0.0.1:8000/api/v1/current_user/'}).
           then(function(response) {
             var current_user = response.data;
-            $scope.customer.client_name = current_user.full_name;
-            $scope.customer.contact_number = current_user.phone_number;
-            $scope.customer.email = current_user.email;
+              $scope.customer.user_data.client_name = current_user.client_name;
+              $scope.customer.user_data.contact_number = current_user.contact_number;
+              $scope.customer.user_data.email = current_user.email;
+              //$scope.customer.user_data.user = 123;//current_user.user;
+              $scope.customer.user_data.pk = current_user.pk;
+              $scope.weInSystem = true;
+
           }, function(response) {
 
-        });
+          });
   };
-  this.getUserData();
+  $scope.getUserData();
 
-  var _this = this;
   $scope.login = function(username, password){
     $http({method: 'POST', url: 'http://127.0.0.1:8000/api/v1/auth/login/',
            data: {
@@ -96,7 +103,8 @@ angular
          }).
          then(function success(response) {
            AuthTokenFactory.setToken(response.data.token);
-           _this.getUserData();
+           $scope.getUserData();
+           $scope.weInSystem = true;
            return response;
          }, function handleError(response) {
            console.log("error:"+response.data);
@@ -106,6 +114,7 @@ angular
   $scope.logout = function(){
     AuthTokenFactory.setToken();
     $scope.customer = {};
+    $scope.weInSystem = false;
   };
 
 })

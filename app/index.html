@@ -30,21 +30,31 @@
           <li><a ng-click="changeLanguage('en')" translate="menu.BUTTON_TEXT_EN" class="menu_links btn-default"></a></li>
         </ul>
 
-        <form class="navbar-form navbar-right" ng-submit="login(username, password)" ng-show="customer.client_name == null">
+        <form class="navbar-form navbar-right" ng-submit="login(user.username, user.password)" ng-show="weInSystem == false">
           <div class="form-group">
-            <label class="menu_label">Username: <input type="text" ng-model="username" class="form-control"/></label><br/>
+            <label class="menu_label" translate="menu.LABEL_USERNAME">Username:</label>
+            <input type="text" ng-model="user.username" class="form-control"
+                   placeholder="{{'menu.PLACEHOLDER_USERNAME' | translate}}"
+            />
           </div>
 
           <div class="form-group">
-            <label class="menu_label">Password: <input type="password" ng-model="password" class="form-control"/></label><br/>
+            <label class="menu_label" translate="menu.LABEL_PASSWORD">Password:</label>
+            <input type="password" ng-model="user.password" class="form-control"
+                   placeholder="{{'menu.PLACEHOLDER_PASSWORD' | translate}}"
+            />
           </div>
 
-          <button type="submit" class="btn btn-success">Login</button>
+          <button type="submit" class="btn btn-success" translate="menu.BUTTON_LOGIN"
+                  ng-disabled="user.username == null || user.password == null"
+          >Login</button>
         </form>
 
-        <ul class="nav nav-pills navbar-right" ng-show="customer.client_name != null">
-          <li class="navbar-text">Hello: {{customer.client_name}}</li>
-          <li><button type="button" class="btn btn-success" ng-click="logout()">Logout</button></li>
+        <ul class="nav nav-pills navbar-right" ng-show="weInSystem == true">
+          <li class="navbar-text">{{'menu.TEXT_GREETINGS' | translate}} {{customer.user_data.client_name}}</li>
+          <li><button type="button" class="btn btn-success"
+                ng-click="logout()" translate="menu.BUTTON_LOGOUT">Logout
+              </button></li>
         </ul>
 
         <ul class="nav nav-pills navbar-left">

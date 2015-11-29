@@ -6,8 +6,19 @@
     "MENU_MAIN": "Main",
     "MENU_PRICE": "Price",
     "MENU_ABOUT": "About",
-    "MENU_FEEDBACKS": "Feedbacks"
+    "MENU_FEEDBACKS": "Feedbacks",
+
+    "LABEL_USERNAME": "Username:",
+    "PLACEHOLDER_USERNAME": "Enter user name",
+
+    "LABEL_PASSWORD": "Password:",
+    "PLACEHOLDER_PASSWORD": "Enter password",
+
+    "BUTTON_LOGIN": "Login",
+    "BUTTON_LOGOUT": "Logout",
+    "TEXT_GREETINGS": "Hello, "
   },
+
   "main":
   {
     "MAIN_WELCOME_TEXT": "Welocome to Irden site!",
@@ -118,7 +129,20 @@
   {
     "FINAL_MAIN_HEADER": "Thank you!",
     "FINAL_MAIN_TEXT": "Thank you for your order, we will connect with you soon",
-    "FINAL_RETURN_BUTTON": "Go to main page"
+    "FINAL_RETURN_BUTTON": "Go to main page",
+
+    "LABEL_REGISTER_CHECKBOX": "Register in system (After that, we will keep you personal information on server)",
+
+    "LABEL_USERNAME": "Username:",
+    "PLACEHOLDER_USERNAME": "Enter user name",
+
+    "LABEL_PASSWORD": "Password:",
+    "PLACEHOLDER_PASSWORD": "Enter password",
+
+    "LABEL_PASSWORD_REPEAT": "Repeat:",
+    "PLACEHOLDER_PASSWORD_REPEAT": "Repeat password",
+
+    "BUTTON_REGISTER": "Register me!"
   },
   "about":
   {

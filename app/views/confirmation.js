@@ -50,15 +50,13 @@ angular.module('irdenPage.confirmation', [])
 
   //Form post function
   $scope.post = function(){
-    $scope.in_progress = true;
     //TODO clean this mess up!!!!
-    console.log('length:');
-    console.log(Object.keys($scope.user).length);
     if(Object.keys($scope.user).length != 0){
       $scope.preparedData = {
         client_name: $scope.customer.user_data.client_name,
         contact_number: $scope.customer.user_data.contact_number,
         email: $scope.customer.user_data.email,
+        id: $scope.customer.user_data.pk,
         user: {username: $scope.user.username, password: $scope.user.password},
         orders: [$scope.customer.order]
       };
@@ -68,19 +66,34 @@ angular.module('irdenPage.confirmation', [])
         client_name: $scope.customer.user_data.client_name,
         contact_number: $scope.customer.user_data.contact_number,
         email: $scope.customer.user_data.email,
+        id: $scope.customer.user_data.pk,
         orders: [$scope.customer.order]
       };
     }
 
+    $scope.in_progress = true;
+
+    if($scope.customer.user_data.pk == null){
+      $http({
+        method: 'POST',
+        url: 'http://127.0.0.1:8000/create_user_data/',
+        data: $scope.preparedData
+        }).then(function successCallback(response) {
+          $location.path('/final').replace();
+        }, function errorCallback(response) {
+          $scope.in_progress = false;
+        });
+    }else{
     $http({
-      method: 'POST',
-      url: 'http://127.0.0.1:8000/create_user_data/',
+      method: 'PUT',
+      url: 'http://127.0.0.1:8000/update_user_data/'+$scope.customer.user_data.pk+'/',
       data: $scope.preparedData
       }).then(function successCallback(response) {
         $location.path('/final').replace();
       }, function errorCallback(response) {
         $scope.in_progress = false;
       });
+    }
   };
 
 })

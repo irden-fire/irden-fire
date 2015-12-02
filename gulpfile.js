@@ -20,7 +20,7 @@ var gulp = require('gulp'),
 var files = require('./gulp/gulp.config.js');
 
 gulp.task('default', function(callback){
-  runSequence('build','watch','server','watch-css', callback);
+  runSequence('build','watch','server','watch-custom-js-css', callback);
 });
 
 /**
@@ -59,9 +59,9 @@ gulp.task('server', function() {
 });
 
 /**
-  *Task watch-css watch changes in ./app/assets/*.css files
+  *Task watch-custom-js-css watch changes in ./app/assets/*.css files, and ./app/*.js
   *and when one of them changed, it starts live-reload task,
-  *which copy css to the build direcory and then, reload this directory in the
+  *which copy css, js files to the build direcory and then, reload file from this directory in the
   *browser
   */
 gulp.task('css-reload', function () {
@@ -69,15 +69,22 @@ gulp.task('css-reload', function () {
     .pipe(connect.reload());
 });
 
+gulp.task('js-reload', function () {
+  gulp.src('./build/js/app.js')
+    .pipe(connect.reload());
+});
+
 gulp.task('live-reload', function(callback){
   runSequence(
     'publish-app-css',
     'css-reload',
+    'copy-app-js',
+    'js-reload',
     callback);
 });
 
-gulp.task('watch-css', function () {
-  gulp.watch(['./app/assets/**/*.css'], ['live-reload']);
+gulp.task('watch-custom-js-css', function () {
+  gulp.watch(['./app/assets/**/*.css', './app/*.js'], ['live-reload']);
 });
 
 /**

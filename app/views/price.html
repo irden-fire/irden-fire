@@ -34,8 +34,8 @@
         <td>{{program.duration}} min</td>
         <td>{{program.how_many_participants}}</td>
         <td>
-        <button type="button" class="form-control btn-default" ng-click="isCollapsed = !isCollapsed">{{'price.PRICE_TABLE_BUTTON' | translate}}</button>
-        <div uib-collapse="isCollapsed">
+        <button type="button" class="form-control btn-default" ng-click="priceCtrl.isCollapsed = !priceCtrl.isCollapsed">{{'price.PRICE_TABLE_BUTTON' | translate}}</button>
+        <div uib-collapse="priceCtrl.isCollapsed">
           <div class="well well-lg alpha6">{{program.description}}</div>
         </div>
         </td>

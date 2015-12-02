@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="irdenPage" class="no-js" ng-controller="TranslateController"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="irdenPage" class="no-js" ng-controller="TranslateController as indexCtrl"> <!--<![endif]-->
 <header>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,40 +22,44 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">IRDEN</a>
+        <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-fire"></span>IRDEN<span class="glyphicon glyphicon-fire"></span></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse" aria-expanded="true">
         <ul class="nav nav-pills navbar-right">
-          <li><a ng-click="changeLanguage('ru')" translate="menu.BUTTON_TEXT_RU" class="menu_links btn-default"></a></li>
-          <li><a ng-click="changeLanguage('en')" translate="menu.BUTTON_TEXT_EN" class="menu_links btn-default"></a></li>
+          <li><a ng-click="indexCtrl.changeLanguage('ru')" translate="menu.BUTTON_TEXT_RU" class="menu_links btn-default"></a></li>
+          <li><a ng-click="indexCtrl.changeLanguage('en')" translate="menu.BUTTON_TEXT_EN" class="menu_links btn-default"></a></li>
         </ul>
 
-        <form class="navbar-form navbar-right" ng-submit="login(user.username, user.password)" ng-show="weInSystem == false">
+        <form class="navbar-form navbar-right" ng-submit="indexCtrl.login(indexCtrl.user.username, indexCtrl.user.password)" ng-show="weInSystem == false">
           <div class="form-group">
             <label class="menu_label" translate="menu.LABEL_USERNAME">Username:</label>
-            <input type="text" ng-model="user.username" class="form-control"
+            <input type="text" ng-model="indexCtrl.user.username" class="form-control"
                    placeholder="{{'menu.PLACEHOLDER_USERNAME' | translate}}"
             />
           </div>
 
           <div class="form-group">
             <label class="menu_label" translate="menu.LABEL_PASSWORD">Password:</label>
-            <input type="password" ng-model="user.password" class="form-control"
+            <input type="password" ng-model="indexCtrl.user.password" class="form-control"
                    placeholder="{{'menu.PLACEHOLDER_PASSWORD' | translate}}"
             />
           </div>
 
           <button type="submit" class="btn btn-success" translate="menu.BUTTON_LOGIN"
-                  ng-disabled="user.username == null || user.password == null"
+                  ng-disabled="indexCtrl.user.username == null || indexCtrl.user.password == null"
           >Login</button>
         </form>
 
-        <ul class="nav nav-pills navbar-right" ng-show="weInSystem == true">
-          <li class="navbar-text">{{'menu.TEXT_GREETINGS' | translate}} {{customer.user_data.client_name}}</li>
-          <li><button type="button" class="btn btn-success"
-                ng-click="logout()" translate="menu.BUTTON_LOGOUT">Logout
-              </button></li>
-        </ul>
+        <form class="navbar-form nav-pills navbar-right" ng-show="weInSystem == true">
+          <div class="form-group">
+            <label class="menu_label">
+              {{'menu.TEXT_GREETINGS' | translate}} {{customer.user_data.client_name}}
+            </label>
+          </div>
+          <button type="button" class="btn btn-danger"
+                ng-click="indexCtrl.logout()" translate="menu.BUTTON_LOGOUT">Logout
+          </button>
+        </form>
 
         <ul class="nav nav-pills navbar-left">
           <!--li><a href="main" class="menu_links" translate="menu.MENU_MAIN"></a></li-->

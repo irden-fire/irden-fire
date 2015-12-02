@@ -3,73 +3,74 @@
 
 angular.module('irdenPage.feedback', [])
 
-.controller('FeedbackCtrl', ['$scope', '$http', function($scope, $http) {
-//  $scope.Math = window.Math;
-  $scope.numPerPage = 5;
-  $scope.numPages = 0;
-  $scope.bigCurrentPage = 1;
-  $scope.listUrl = 'http://127.0.0.1:8000/feedbacks/?limit='+$scope.numPerPage+'&offset='+
-                    ($scope.bigCurrentPage-1)*$scope.numPerPage;
+.controller('FeedbackCtrl', function($http, hostConfig) {
+  var feedbackCtrl = this;
+//  feedbackCtrl.Math = window.Math;
+  feedbackCtrl.numPerPage = 5;
+  feedbackCtrl.numPages = 0;
+  feedbackCtrl.bigCurrentPage = 1;
+  feedbackCtrl.listUrl = hostConfig.url+hostConfig.port+'/feedbacks/?limit='+feedbackCtrl.numPerPage+'&offset='+
+                    (feedbackCtrl.bigCurrentPage-1)*feedbackCtrl.numPerPage;
 /**
   @function getFeedbacksList
   @param method - HTTP method
   @param url - end point to service
   @return status and list of feedbacks from server
 */
-  $scope.getFeedbacksList = function(){
-    $http({method: 'GET', url:$scope.listUrl }).
+  feedbackCtrl.getFeedbacksList = function(){
+    $http({method: 'GET', url:feedbackCtrl.listUrl }).
          then(function(response) {
-           $scope.status = response.status;
-           $scope.data = response.data;
+           feedbackCtrl.status = response.status;
+           feedbackCtrl.feedbacks = response.data;
          }, function(response) {
-           $scope.data = response.data || "Request failed";
-           $scope.status = response.status;
+           feedbackCtrl.data = response.data || "Request failed";
+           feedbackCtrl.status = response.status;
        });
    };
-   $scope.getFeedbacksList();
+   feedbackCtrl.getFeedbacksList();
 
    /**
      @function postFeedback
      @param data - just form data which saved in object
      @return result of saving data
    */
-   $scope.postFeedback = function(){
+   feedbackCtrl.postFeedback = function(){
       $http({
         method: 'POST',
-        url: 'http://127.0.0.1:8000/feedbacks/',
-        data: $scope.feedback
+        url: hostConfig.url+hostConfig.port+'/feedbacks/',
+        data: feedbackCtrl.feedback
         }).then(function successCallback(response) {
-          $scope.getFeedbacksList();
-          $scope.feedback = {};
+          feedbackCtrl.getFeedbacksList();
+          feedbackCtrl.feedback = {};
         }, function errorCallback(response) {
 
         });
    };
   //Rating variables
-   $scope.rate = 7;
-   $scope.max = 10;
-   $scope.isReadonly = false;
+   feedbackCtrl.rate = 7;
+   feedbackCtrl.max = 10;
+   feedbackCtrl.isReadonly = false;
 
-   $scope.hoveringOver = function(value) {
-      $scope.overStar = value;
-      $scope.percent = 100 * (value / $scope.max);
+   feedbackCtrl.hoveringOver = function(value) {
+      feedbackCtrl.overStar = value;
+      feedbackCtrl.percent = 100 * (value / feedbackCtrl.max);
   };
 
   //Paginator variables
-      $scope.maxSize = 5;
-      $scope.changePage = function() {
-        $scope.listUrl = 'http://127.0.0.1:8000/feedbacks/?limit='+$scope.numPerPage+'&offset='+
-                          ($scope.bigCurrentPage-1)*$scope.numPerPage;
-        $scope.getFeedbacksList();
+      feedbackCtrl.maxSize = 5;
+      feedbackCtrl.changePage = function() {
+        feedbackCtrl.listUrl = hostConfig.url+hostConfig.port+'/feedbacks/?limit='+feedbackCtrl.numPerPage+'&offset='+
+                          (feedbackCtrl.bigCurrentPage-1)*feedbackCtrl.numPerPage;
+        feedbackCtrl.getFeedbacksList();
       }
   //end
 
-   $scope.feedback = {};
+   feedbackCtrl.feedback = {};
 /*
-   $scope.post = function() {
-     $scope.postFeedback($scope.feedback);
-     $scope.feedback = {};
+   feedbackCtrl.post = function() {
+     feedbackCtrl.postFeedback(feedbackCtrl.feedback);
+     feedbackCtrl.feedback = {};
    };*/
 
-}]);
+});
 })();

@@ -82,8 +82,8 @@
               <label for="desired_date" class="control-label">{{'confirmation.CONFIRMATION_FORM_DATE' | translate}}</label>
               <div class="input-group">
                 <input type="text" name="desired_date" class="form-control"
-                        uib-datepicker-popup={{format}} ng-model="customer.order.desired_date" is-open="calendar_status.opened"
-                        min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+                        uib-datepicker-popup={{confirmCtrl.format}} ng-model="customer.order.desired_date" is-open="confirmCtrl.calendar_status.opened"
+                        min-date="confirmCtrl.minDate" max-date="confirmCtrl.maxDate" datepicker-options="confirmCtrl.dateOptions"
                         ng-required="true" close-text="Close"
                         placeholder="{{'confirmation.CONFIRMATION_FORM_DATE_PLACEHOLDER' | translate}}"
                         uib-tooltip="{{'confirmation.CONFIRMATION_FORM_DATE_TOOLTIP' | translate}}"
@@ -100,39 +100,50 @@
               <label for="desired_time" class="control-label">{{'confirmation.CONFIRMATION_FORM_TIME' | translate}}</label>
               <div class="controls">
                 <uib-timepicker ng-model="customer.order.desired_date" name="desired_time"
-                                hour-step="hstep" minute-step="mstep" show-meridian="ismeridian">
+                                hour-step="confirmCtrl.hstep" minute-step="confirmCtrl.mstep" show-meridian="confirmCtrl.ismeridian">
                 </uib-timepicker>
               </div>
             </div>
             <div class="form-group" ng-show="weInSystem == false">
               <label class="control-label" translate="final.LABEL_REGISTER_CHECKBOX">Regisret me:</label>
-              <input type="checkbox" class="form-control" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed"/>
+              <input type="checkbox" class="form-control" ng-init="confirmCtrl.isCollapsed = true" ng-click="confirmCtrl.isCollapsed = !confirmCtrl.isCollapsed"/>
             </div>
-              <div uib-collapse="isCollapsed" class="well well-lg aplha6">
+              <div uib-collapse="confirmCtrl.isCollapsed" class="well well-lg aplha6">
                   <div class="form-group" >
                     <label class="menu_label" translate="final.LABEL_USERNAME">Username:</label>
-                    <input type="text" ng-model="user.username" class="form-control"
+                    <input type="text" ng-model="confirmCtrl.user.username" class="form-control"
                            placeholder="{{'final.PLACEHOLDER_USERNAME' | translate}}"
                     />
                   </div>
 
                   <div class="form-group">
                     <label class="menu_label" translate="final.LABEL_PASSWORD">Password:</label>
-                    <input type="password" ng-model="user.password" class="form-control"
+                    <input type="password" ng-model="confirmCtrl.user.password" class="form-control"
                            placeholder="{{'final.PLACEHOLDER_PASSWORD' | translate}}"
                     />
                   </div>
 
                   <div class="form-group">
                     <label class="menu_label" translate="final.LABEL_PASSWORD_REPEAT">Password:</label>
-                    <input type="password" ng-model="user.password2" class="form-control"
+                    <input type="password" ng-model="confirmCtrl.user.password2" class="form-control"
                            placeholder="{{'final.PLACEHOLDER_PASSWORD_REPEAT' | translate}}"
                     />
                   </div>
                 </div>
             <hr/>
-              <button type="submit" ng-click="post()" class="btn btn-primary"
-              ng-disabled="clientform.$invalid || in_progress">{{'confirmation.CONFIRMATION_FORM_POST' | translate}}</button>
+              <button type="submit"
+              ng-click="confirmCtrl.post(
+                             customer.user_data.client_name, customer.user_data.contact_number,
+                             customer.user_data.email, customer.user_data.pk,
+                             confirmCtrl.user.username, confirmCtrl.user.password,
+                             customer.order
+                            )"
+              class="btn btn-primary"
+              ng-disabled="clientform.$invalid || confirmCtrl.in_progress ||
+                           ((confirmCtrl.user.password != '') &&
+                            confirmCtrl.user.password != confirmCtrl.user.password2)">
+                           {{'confirmation.CONFIRMATION_FORM_POST' | translate}}
+              </button>
     </form>
         </p>
     </article>

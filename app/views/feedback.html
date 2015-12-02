@@ -14,13 +14,13 @@
         <div class="control-group" ng-class="{ 'has-error' : (feedbackform.rate.$invalid &&
                                                             (!feedbackform.rate.$pristine || !feedbackform.rate.$dirty)) || !feedback.rate
                                                           }">
-              <uib-rating ng-model="feedback.rate" max="max" readonly="isReadonly"
-                on-hover="hoveringOver(value)" on-leave="overStar = null"
+              <uib-rating ng-model="feedbackCtrl.feedback.rate" max="feedbackCtrl.max" readonly="isReadonly"
+                on-hover="feedbackCtrl.hoveringOver(value)" on-leave="feedbackCtrl.overStar = null"
                 titles="['one','two','three']" aria-labelledby="default-rating" required name="rate"
                 uib-tooltip="{{'feedback.FEEDBACK_FORM_RATE_TOOLTIP' | translate}}"
                 tooltip-placement="top"
                 tooltip-trigger="mouseenter"
-                tooltip-enable="!feedback.rate"
+                tooltip-enable="!feedbackCtrl.feedback.rate"
                 >
               </uib-rating>
               <div class="help-inline">
@@ -32,12 +32,12 @@
                                                           }">
           <label for="title">{{'feedback.FEEDBACK_FORM_TITLE' | translate}}</label>
           <div class="controls">
-            <input  type="text" ng-model="feedback.title" class="form-control" name="title" required
+            <input  type="text" ng-model="feedbackCtrl.feedback.title" class="form-control" name="title" required
                     placeholder="{{'feedback.FEEDBACK_FORM_TITLE_PLACEHOLDER' | translate}}"
                     uib-tooltip="{{'feedback.FEEDBACK_FORM_TITLE_TOOLTIP' | translate}}"
                     tooltip-placement="top"
                     tooltip-trigger="mouseenter"
-                    tooltip-enable="!feedback.title"
+                    tooltip-enable="!feedbackCtrl.feedback.title"
             />
             <div class="help-inline">
               <p ng-show="feedbackform.title.$invalid && !feedbackform.title.$pristine" class="help-block">{{'feedback.FEEDBACK_FORM_TITLE_REQUIRED' | translate}}</p>
@@ -50,12 +50,12 @@
                                                           }">
           <label for="message">{{'feedback.FEEDBACK_FORM_MESSAGE' | translate}}</label>
           <div class="controls">
-            <textarea ng-model="feedback.message" class="form-control" rows="5" name="message" required
+            <textarea ng-model="feedbackCtrl.feedback.message" class="form-control" rows="5" name="message" required
                       placeholder="{{'feedback.FEEDBACK_FORM_MESSAGE_PLACEHOLDER' | translate}}"
                       uib-tooltip="{{'feedback.FEEDBACK_FORM_MESSAGE_TOOLTIP' | translate}}"
                       tooltip-placement="top"
                       tooltip-trigger="mouseenter"
-                      tooltip-enable="!feedback.message"
+                      tooltip-enable="!feedbackCtrl.feedback.message"
               /></textarea>
             <div class="help-inline">
               <p ng-show="feedbackform.message.$invalid && !feedbackform.message.$pristine" class="help-block">{{'feedback.FEEDBACK_FORM_MESSAGE_REQUIRED' | translate}}</p>
@@ -68,12 +68,12 @@
                                                           }">
           <label for="author">{{'feedback.FEEDBACK_FORM_AUTHOR' | translate}}</label>
           <div class="controls">
-            <input type="text" ng-model="feedback.author" class="form-control" name="author" required
+            <input type="text" ng-model="feedbackCtrl.feedback.author" class="form-control" name="author" required
                     placeholder="{{'feedback.FEEDBACK_FORM_AUTHOR_PLACEHOLDER' | translate}}"
                     uib-tooltip="{{'feedback.FEEDBACK_FORM_AUTHOR_TOOLTIP' | translate}}"
                     tooltip-placement="top"
                     tooltip-trigger="mouseenter"
-                    tooltip-enable="!feedback.author"
+                    tooltip-enable="!feedbackCtrl.feedback.author"
             />
             <div class="help-inline">
               <p ng-show="feedbackform.author.$invalid && !feedbackform.author.$pristine" class="help-block">{{'feedback.FEEDBACK_FORM_AUTHOR_REQUIRED' | translate}}</p>
@@ -86,13 +86,13 @@
                                                           }">
           <label for="email">{{'feedback.FEEDBACK_FORM_EMAIL' | translate}}</label>
           <div class="controls">
-            <input type="email" ng-model="feedback.email" required
+            <input type="email" ng-model="feedbackCtrl.feedback.email" required
                     class="form-control" name="email"
                     placeholder="{{'feedback.FEEDBACK_FORM_EMAIL_PLACEHOLDER' | translate}}"
                     uib-tooltip="{{'feedback.FEEDBACK_FORM_EMAIL_TOOLTIP' | translate}}"
                     tooltip-placement="top"
                     tooltip-trigger="mouseenter"
-                    tooltip-enable="!feedback.email"/>
+                    tooltip-enable="!feedbackCtrl.feedback.email"/>
 
             <div class="help-inline" ng-show="feedbackform.email.$invalid && !feedbackform.email.$pristine">
                   <span ng-show="feedbackform.email.$required">{{'feedback.FEEDBACK_FORM_EMAIL_REQUIRED' | translate}}</span>
@@ -102,15 +102,15 @@
           </div>
         </div>
         <hr/>
-          <button ng-click="postFeedback()" translate="feedback.FEEDBACK_FORM_SUBMIT" class="btn btn-primary" ng-disabled="feedbackform.$invalid">
+          <button ng-click="feedbackCtrl.postFeedback()" translate="feedback.FEEDBACK_FORM_SUBMIT" class="btn btn-primary" ng-disabled="feedbackform.$invalid">
           </button>
       </form>
     </article>
 
-    <article ng-repeat="feedback in data.results" class="well aplha6">
+    <article ng-repeat="feedback in feedbackCtrl.feedbacks.results" class="well aplha6">
       <header>
         <h3>{{feedback.title}}</h3>
-        <uib-rating ng-model="feedback.rate" max="max" readonly="true"
+        <uib-rating ng-model="feedback.rate" max="feedbackCtrl.max" readonly="true"
           titles="['one','two','three']" aria-labelledby="default-rating">
         </uib-rating>
       </header>
@@ -120,10 +120,10 @@
         ({{feedback.created | date:'yyyy-MM-dd HH:mm:ss'}})
       </footer>
     </article>
-    <uib-pagination total-items="data.count" ng-model="bigCurrentPage"
-      max-size="maxSize" class="pagination-sm"
+    <uib-pagination total-items="feedbackCtrl.feedbacks.count" ng-model="feedbackCtrl.bigCurrentPage"
+      max-size="feedbackCtrl.maxSize" class="pagination-sm"
       boundary-links="true" rotate="false"
-      num-pages="numPages" ng-change="changePage()"
-      items-per-page="numPerPage">
+      num-pages="feedbackCtrl.numPages" ng-change="feedbackCtrl.changePage()"
+      items-per-page="feedbackCtrl.numPerPage">
     </uib-pagination>
 </div>

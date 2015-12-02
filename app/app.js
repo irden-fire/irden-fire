@@ -5,7 +5,7 @@ function config ($routeProvider, $locationProvider, $httpProvider, $translatePro
     $routeProvider
     .when('/', {
      templateUrl: '/views/main.html',
-     controller: 'MainCtrl',
+     controller: 'MainCtrl as mainCtrl',
     })
     .when('/about', {
       templateUrl: '/views/about_us.html',
@@ -14,15 +14,15 @@ function config ($routeProvider, $locationProvider, $httpProvider, $translatePro
 
     .when('/feedback', {
       templateUrl: '/views/feedback.html',
-      controller: 'FeedbackCtrl',
+      controller: 'FeedbackCtrl as feedbackCtrl',
     })
     .when('/price', {
       templateUrl: '/views/price.html',
-      controller: 'PriceCtrl',
+      controller: 'PriceCtrl as priceCtrl',
     })
     .when('/confirmation/:price', {
       templateUrl: '/views/confirmation.html',
-      controller: 'ConfirmationCtrl',
+      controller: 'ConfirmationCtrl as confirmCtrl',
     })
     .when('/final', {
       templateUrl: '/views/final.html',
@@ -40,7 +40,7 @@ function config ($routeProvider, $locationProvider, $httpProvider, $translatePro
       suffix: '.json'
     });
 
-    $translateProvider.preferredLanguage('en');
+    $translateProvider.preferredLanguage('ru');
 
     // Tell the module to store the language in the local storage
     $translateProvider.useLocalStorage();
@@ -64,13 +64,19 @@ angular
   'irdenPage.confirmation',
   'irdenPage.final',
 ])
+.constant("hostConfig", {
+        "url": "http://127.0.0.1",
+        "port": ":8000"
+    })
 .config(config)
-.controller('TranslateController', function($translate, $scope, $http, AuthTokenFactory) {
+.controller('TranslateController', function($translate, $scope, $http, AuthTokenFactory, hostConfig){
+  var indexCtrl = this;
+
   $scope.customer = {};
   $scope.customer.user_data = {};
   $scope.weInSystem = false;
 
-  $scope.changeLanguage = function (langKey) {
+  indexCtrl.changeLanguage = function (langKey) {
     $translate.use(langKey);
     console.log("lang:"+langKey);
   };
@@ -78,7 +84,7 @@ angular
 //TODO make one service, which can login or register user, and change form data at the same time
 //TODO deside how check is we in system or not
   $scope.getUserData = function(){
-     $http({method: 'GET', url: 'http://127.0.0.1:8000/api/v1/current_user/'}).
+     $http({method: 'GET', url: hostConfig.url+hostConfig.port+'/api/v1/current_user/'}).
           then(function(response) {
             var current_user = response.data;
               $scope.customer.user_data.client_name = current_user.client_name;
@@ -94,8 +100,8 @@ angular
   };
   $scope.getUserData();
 
-  $scope.login = function(username, password){
-    $http({method: 'POST', url: 'http://127.0.0.1:8000/api/v1/auth/login/',
+  indexCtrl.login = function(username, password){
+    $http({method: 'POST', url: hostConfig.url+hostConfig.port+'/api/v1/auth/login/',
            data: {
             username: username,
             password: password
@@ -111,13 +117,38 @@ angular
        });
   }
 
-  $scope.logout = function(){
+  indexCtrl.logout = function(){
     AuthTokenFactory.setToken();
     $scope.customer = {};
+    $scope.customer.order = {};
+    $scope.customer.user_data = {};
+    $scope.customer.order.desired_date = new Date();
+    $scope.customer.order.desired_date.setHours(21);
+    $scope.customer.order.desired_date.setMinutes(0);
     $scope.weInSystem = false;
+    indexCtrl.user = {};
   };
 
 })
+.factory('GetUserDataFactory', function GetUserDataFactory($http){
+  'use strict';
+  var customer = {};
+  customer.user_data = {};
+  customer.order = {};
+
+  function setUserData(){
+
+  }
+
+  function getUserData(){
+
+  }
+
+  function resetUserData(){
+
+  }
+})
+
 .factory('AuthTokenFactory', function AuthTokenFactory($window){
     'use strict';
     var store = $window.localStorage;

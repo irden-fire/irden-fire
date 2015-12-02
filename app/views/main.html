@@ -44,7 +44,7 @@
         <header>
           <h2 translate="main.MAIN_FEEDBACK_HEADER"></h2>
         </header>
-          <p ng-repeat="feedback in data.results">"{{feedback.message}}" ({{feedback.author}})</p>
+          <p ng-repeat="feedback in mainCtrl.feedbacks.results">"{{feedback.message}}" ({{feedback.author}})</p>
           <p><a class="btn btn-default" href="/feedback" role="button" translate="main.MAIN_FEEDBACK_BUTTON">
             »
           </a></p>

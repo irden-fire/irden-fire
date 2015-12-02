@@ -5,6 +5,7 @@ angular.module('irdenPage.confirmation', [])
 
 .controller('ConfirmationCtrl', function($scope, $location, $routeParams, $http) {
   // $scope.customer = {};
+  var confirmCtrl = this;
 
    $http({method: 'GET', url: 'http://127.0.0.1:8000/prices/'+$routeParams.price+'/'}).
         then(function(response) {
@@ -18,80 +19,81 @@ angular.module('irdenPage.confirmation', [])
 //   }
 
 //Initialization params
-  $scope.user = {};
+  confirmCtrl.user = {};
   $scope.customer.order = {};
   $scope.customer.order.price = $routeParams.price;
-  $scope.in_progress = false;
+  confirmCtrl.in_progress = false;
 
 //Initialization date-picker params and function
-  $scope.format = 'yyyy-MMMM-dd';
-  $scope.maxDate = new Date(2020, 5, 22);
-  $scope.minDate = new Date();
-  $scope.customer.desired_date = new Date();
-  $scope.customer.desired_date.setHours(21);
-  $scope.customer.desired_date.setMinutes(0);
+  confirmCtrl.format = 'yyyy-MMMM-dd';
+  confirmCtrl.maxDate = new Date(2020, 5, 22);
+  confirmCtrl.minDate = new Date();
+  $scope.customer.order.desired_date = new Date();
+  $scope.customer.order.desired_date.setHours(21);
+  $scope.customer.order.desired_date.setMinutes(0);
 
-  $scope.dateOptions = {
+  confirmCtrl.dateOptions = {
     formatYear: 'yyyy',
     startingDay: 1
   };
 
-  $scope.calendar_status = {
+  confirmCtrl.calendar_status = {
     opened: false
   };
 
-  $scope.open = function($event) {
-    $scope.calendar_status.opened = true;
+  confirmCtrl.open = function($event) {
+    confirmCtrl.calendar_status.opened = true;
   };
 //Initialization time-picker params and functions
-  $scope.hstep = 1;
-  $scope.mstep = 15;
-  $scope.ismeridian = false;
+  confirmCtrl.hstep = 1;
+  confirmCtrl.mstep = 15;
+  confirmCtrl.ismeridian = false;
 
   //Form post function
-  $scope.post = function(){
+  confirmCtrl.post = function(client_name, contact_number, email, pk, username, password, order){
     //TODO clean this mess up!!!!
-    if(Object.keys($scope.user).length != 0){
-      $scope.preparedData = {
-        client_name: $scope.customer.user_data.client_name,
-        contact_number: $scope.customer.user_data.contact_number,
-        email: $scope.customer.user_data.email,
-        id: $scope.customer.user_data.pk,
-        user: {username: $scope.user.username, password: $scope.user.password},
-        orders: [$scope.customer.order]
+    var preparedData = {}
+    if(username != null){
+      preparedData = {
+        client_name: client_name,
+        contact_number: contact_number,
+        email: email,
+        id: pk,
+        user: {username: username, password: password},
+        orders: [order]
       };
     }
     else{
-      $scope.preparedData = {
-        client_name: $scope.customer.user_data.client_name,
-        contact_number: $scope.customer.user_data.contact_number,
-        email: $scope.customer.user_data.email,
-        id: $scope.customer.user_data.pk,
-        orders: [$scope.customer.order]
+      preparedData = {
+        client_name: client_name,
+        contact_number: contact_number,
+        email: email,
+        id: pk,
+        orders: [order]
       };
     }
 
-    $scope.in_progress = true;
+    confirmCtrl.in_progress = true;
 
-    if($scope.customer.user_data.pk == null){
+    if(pk == null){
       $http({
         method: 'POST',
         url: 'http://127.0.0.1:8000/create_user_data/',
-        data: $scope.preparedData
+        data: preparedData
         }).then(function successCallback(response) {
           $location.path('/final').replace();
         }, function errorCallback(response) {
-          $scope.in_progress = false;
+          confirmCtrl.in_progress = false;
         });
     }else{
     $http({
       method: 'PUT',
-      url: 'http://127.0.0.1:8000/update_user_data/'+$scope.customer.user_data.pk+'/',
-      data: $scope.preparedData
+      url: 'http://127.0.0.1:8000/update_user_data/'+pk+'/',
+      data: preparedData
       }).then(function successCallback(response) {
         $location.path('/final').replace();
       }, function errorCallback(response) {
-        $scope.in_progress = false;
+        confirmCtrl.in_progress = false;
       });
     }
   };

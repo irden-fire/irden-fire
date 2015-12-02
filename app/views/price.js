@@ -3,7 +3,8 @@
 
 angular.module('irdenPage.price', ['ui.bootstrap'])
 
-.controller('PriceCtrl', ['$scope', '$http', function($scope, $http) {
+.controller('PriceCtrl', function($scope, $http, hostConfig) {
+  var priceCtrl = this;
   /**
     @function getFeedbacksList
     @param method - HTTP method
@@ -11,7 +12,7 @@ angular.module('irdenPage.price', ['ui.bootstrap'])
     @return status and list of feedbacks from server
   */
     (function(){
-      $http({method: 'GET', url: 'http://127.0.0.1:8000/prices/'}).
+      $http({method: 'GET', url: hostConfig.url+hostConfig.port+'/prices/'}).
            then(function(response) {
              $scope.status = response.status;
              $scope.data = response.data;
@@ -23,6 +24,6 @@ angular.module('irdenPage.price', ['ui.bootstrap'])
 /**
   @global set description panels state by default (true = panels was closed)
 */
-  $scope.isCollapsed = true;
-}]);
+  priceCtrl.isCollapsed = true;
+});
 })();

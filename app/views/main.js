@@ -3,21 +3,21 @@
 
 angular.module('irdenPage.main', [])
 
-.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
-
+.controller('MainCtrl', function($http, hostConfig) {
+  var mainCtrl = this;
   /**
     @function getFeedbacksList
     @param method - HTTP method
     @param url - end point to service
     @return status and list of feedbacks from server
   */
-      $http({method: 'GET', url: 'http://127.0.0.1:8000/feedbacks/?limit=3'}).
+      $http({method: 'GET', url: hostConfig.url+hostConfig.port+'/feedbacks/?limit=3'}).
            then(function(response) {
-             $scope.status = response.status;
-             $scope.data = response.data;
+             mainCtrl.status = response.status;
+             mainCtrl.feedbacks = response.data;
            }, function(response) {
-             $scope.data = response.data || "Request failed";
-             $scope.status = response.status;
+             mainCtrl.data = response.data || "Request failed";
+             mainCtrl.status = response.status;
          });
     /*  var lang = {};
       var _this = this;
@@ -25,5 +25,5 @@ angular.module('irdenPage.main', [])
          _this.lang = data;
       //   console.log(_this.lang);
     });*/
-}]);
+});
 })();

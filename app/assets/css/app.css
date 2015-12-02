@@ -1,24 +1,31 @@
-/* app css stylesheet */
-nav .nav, .pagination, .carousel, .panel-title a {
-  cursor: pointer;
-}
+  /* app  css stylesheet */
+  nav .nav, .pagination, .carousel, .panel-title a {
+    cursor: pointer;
+  }
 
-nav .nav .menu_links{
-  color: white;
-  background-color: transparent;
-  padding-bottom: 15px;
-  padding-top: 15px;
-}
+  .table-hover tbody tr:hover td
+   {
+       background-color: rgba(204, 153, 102, 0.9);
+       transition: background 0.5s;
+  }
 
-label.menu_label{
-  color: white;
-}
+  nav .nav .menu_links{
+    color: white;
+    background-color: transparent;
+    padding-bottom: 15px;
+    padding-top: 15px;
+  }
 
-.nav>li>a:focus, .nav>li>a:hover {
-    text-decoration: none;
-    background-color: #eee;
-    color: black;
-}
+  label.menu_label{
+    color: white;
+  }
+
+  .nav>li>a:focus, .nav>li>a:hover {
+      text-decoration: none;
+      background-color: #eee;
+      transition: background 0.5s;      
+      color: black;
+  }
 
  .btn {
    overflow: hidden;
@@ -34,10 +41,12 @@ label.menu_label{
  .bottom { top: 100px; }
  .btn:hover .bottom {top: 0px;}
 
-  .well.aplha6, .jumbotron.aplha6{
+  .well.aplha6, .jumbotron.aplha6, .well.well-lg.alpha6{
    color: #FFFFFF;
    background: rgba(192, 192, 192, 0.6);
  }
+
+
 
  .well.login {
    color: #000000;

@@ -23,7 +23,7 @@
   .nav>li>a:focus, .nav>li>a:hover {
       text-decoration: none;
       background-color: #eee;
-      transition: background 0.5s;      
+      transition: background 0.5s;
       color: black;
   }
 
@@ -60,7 +60,7 @@
  #lava-scroll {
    width: 100%;
    height: auto;
-   background: url(/assets/images/all.png) repeat-y;
+   background: url(/assets/images/lava2.png) repeat-y;
    -webkit-animation: backgroundScroll 20s linear infinite;
    animation: backgroundScroll 40s linear infinite; /* Adjust timing here according to speed required */
   }

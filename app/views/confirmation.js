@@ -3,11 +3,12 @@
 
 angular.module('irdenPage.confirmation', [])
 
-.controller('ConfirmationCtrl', function($scope, $location, $routeParams, $http) {
+.controller('ConfirmationCtrl', function($scope, $location, $routeParams, $http, hostConfig, UserData) {
   // $scope.customer = {};
   var confirmCtrl = this;
+  confirmCtrl.customer = UserData.getUserData();
 
-   $http({method: 'GET', url: 'http://127.0.0.1:8000/prices/'+$routeParams.price+'/'}).
+   $http({method: 'GET', url: hostConfig.url+hostConfig.port+'/prices/'+$routeParams.price+'/'}).
         then(function(response) {
           $scope.confirming_order = response.data;
         }, function(response) {
@@ -18,19 +19,18 @@ angular.module('irdenPage.confirmation', [])
 
 //   }
 
-//Initialization params
+//Params initialization
   confirmCtrl.user = {};
-  $scope.customer.order = {};
-  $scope.customer.order.price = $routeParams.price;
+  confirmCtrl.customer.order.price = $routeParams.price;
   confirmCtrl.in_progress = false;
 
 //Initialization date-picker params and function
-  confirmCtrl.format = 'yyyy-MMMM-dd';
+  confirmCtrl.format = 'dd-mm-yyyy';
   confirmCtrl.maxDate = new Date(2020, 5, 22);
   confirmCtrl.minDate = new Date();
-  $scope.customer.order.desired_date = new Date();
+/*  $scope.customer.order.desired_date = new Date();
   $scope.customer.order.desired_date.setHours(21);
-  $scope.customer.order.desired_date.setMinutes(0);
+  $scope.customer.order.desired_date.setMinutes(0);*/
 
   confirmCtrl.dateOptions = {
     formatYear: 'yyyy',
@@ -78,7 +78,7 @@ angular.module('irdenPage.confirmation', [])
     if(pk == null){
       $http({
         method: 'POST',
-        url: 'http://127.0.0.1:8000/create_user_data/',
+        url: hostConfig.url+hostConfig.port+'/create_user_data/',
         data: preparedData
         }).then(function successCallback(response) {
           $location.path('/final').replace();
@@ -86,15 +86,15 @@ angular.module('irdenPage.confirmation', [])
           confirmCtrl.in_progress = false;
         });
     }else{
-    $http({
-      method: 'PUT',
-      url: 'http://127.0.0.1:8000/update_user_data/'+pk+'/',
-      data: preparedData
-      }).then(function successCallback(response) {
-        $location.path('/final').replace();
-      }, function errorCallback(response) {
-        confirmCtrl.in_progress = false;
-      });
+      $http({
+        method: 'PUT',
+        url: hostConfig.url+hostConfig.port+'/update_user_data/'+pk+'/',
+        data: preparedData
+        }).then(function successCallback(response) {
+          $location.path('/final').replace();
+        }, function errorCallback(response) {
+          confirmCtrl.in_progress = false;
+        });
     }
   };
 
@@ -113,7 +113,6 @@ angular.module('irdenPage.confirmation', [])
                 ctrl.$setValidity('invalidChars', !invalidChars)
                 ctrl.$setValidity('invalidLen', !invalidLen)
                 scope.usernameGood = !isBlank && !invalidChars && !invalidLen
-
             })
         }
     }

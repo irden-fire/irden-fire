@@ -25,12 +25,12 @@
                                                               }">
               <label for="name" class="control-label">{{'confirmation.CONFIRMATION_FORM_NAME' | translate}}</label>
               <div class="controls">
-                <input type="text" ng-model="customer.user_data.client_name" class="form-control" name="username" required
+                <input type="text" ng-model="confirmCtrl.customer.user_data.client_name" class="form-control" name="username" required
                   placeholder="{{'confirmation.CONFIRMATION_FORM_NAME_PLACEHOLDER' | translate}}"
                   uib-tooltip="{{'confirmation.CONFIRMATION_FORM_NAME_TOOLTIP' | translate}}"
                   tooltip-placement="top"
                   tooltip-trigger="mouseenter"
-                  tooltip-enable="!customer.user_data.client_name"
+                  tooltip-enable="!confirmCtrl.customer.user_data.client_name"
                 />
                   <div class="help-inline">
                     <p ng-show="clientform.username.$invalid && !clientform.username.$pristine" class="help-block">
@@ -44,12 +44,12 @@
                                                               }">
               <label for="phone" class="control-label">{{'confirmation.CONFIRMATION_FORM_PHONE' | translate}}</label>
               <div class="controls">
-                <input type="text" ng-model="customer.user_data.contact_number" class="form-control" name="phone" required
+                <input type="text" ng-model="confirmCtrl.customer.user_data.contact_number" class="form-control" name="phone" required
                         placeholder="{{'confirmation.CONFIRMATION_FORM_PHONE_PLACEHOLDER' | translate}}"
                         uib-tooltip="{{'confirmation.CONFIRMATION_FORM_PHONE_TOOLTIP' | translate}}"
                         tooltip-placement="top"
                         tooltip-trigger="mouseenter"
-                        tooltip-enable="!customer.user_data.contact_number"
+                        tooltip-enable="!confirmCtrl.customer.user_data.contact_number"
                         ui-mask="+999 (99) 999-99-99"
                         ui-mask-placeholder ui-mask-placeholder-char="_"
                 />
@@ -64,13 +64,13 @@
                                                               }">
               <label for="email" class="control-label">{{'confirmation.CONFIRMATION_FORM_EMAIL' | translate}}</label>
               <div class="controls">
-                <input type="email" ng-model="customer.user_data.email" required
+                <input type="email" ng-model="confirmCtrl.customer.user_data.email" required
                         class="form-control" name="email"
                         placeholder="{{'confirmation.CONFIRMATION_FORM_EMAIL_PLACEHOLDER' | translate}}"
                         uib-tooltip="{{'confirmation.CONFIRMATION_FORM_EMAIL_TOOLTIP' | translate}}"
                         tooltip-placement="top"
                         tooltip-trigger="mouseenter"
-                        tooltip-enable="!customer.user_data.email"
+                        tooltip-enable="!confirmCtrl.customer.user_data.email"
                         />
                 <div class="help-inline">
                       <p ng-show="clientform.email.$invalid && !clientform.email.$pristine" class="help-block">
@@ -82,14 +82,14 @@
               <label for="desired_date" class="control-label">{{'confirmation.CONFIRMATION_FORM_DATE' | translate}}</label>
               <div class="input-group">
                 <input type="text" name="desired_date" class="form-control"
-                        uib-datepicker-popup={{confirmCtrl.format}} ng-model="customer.order.desired_date" is-open="confirmCtrl.calendar_status.opened"
+                        uib-datepicker-popup={{confirmCtrl.format}} ng-model="confirmCtrl.customer.order.desired_date" is-open="confirmCtrl.calendar_status.opened"
                         min-date="confirmCtrl.minDate" max-date="confirmCtrl.maxDate" datepicker-options="confirmCtrl.dateOptions"
                         ng-required="true" close-text="Close"
                         placeholder="{{'confirmation.CONFIRMATION_FORM_DATE_PLACEHOLDER' | translate}}"
                         uib-tooltip="{{'confirmation.CONFIRMATION_FORM_DATE_TOOLTIP' | translate}}"
                         tooltip-placement="top"
                         tooltip-trigger="mouseenter"
-                        tooltip-enable="!customer.desired_date"
+                        tooltip-enable="!confirmCtrl.customer.order.desired_date"
                         />
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -99,12 +99,12 @@
             <div class="control-group">
               <label for="desired_time" class="control-label">{{'confirmation.CONFIRMATION_FORM_TIME' | translate}}</label>
               <div class="controls">
-                <uib-timepicker ng-model="customer.order.desired_date" name="desired_time"
+                <uib-timepicker ng-model="confirmCtrl.customer.order.desired_date" name="desired_time"
                                 hour-step="confirmCtrl.hstep" minute-step="confirmCtrl.mstep" show-meridian="confirmCtrl.ismeridian">
                 </uib-timepicker>
               </div>
             </div>
-            <div class="form-group" ng-show="weInSystem == false">
+            <div class="form-group" ng-show="confirmCtrl.customer.user_data.pk == null">
               <label class="control-label" translate="final.LABEL_REGISTER_CHECKBOX">Regisret me:</label>
               <input type="checkbox" class="form-control" ng-init="confirmCtrl.isCollapsed = true" ng-click="confirmCtrl.isCollapsed = !confirmCtrl.isCollapsed"/>
             </div>
@@ -133,10 +133,10 @@
             <hr/>
               <button type="submit"
               ng-click="confirmCtrl.post(
-                             customer.user_data.client_name, customer.user_data.contact_number,
-                             customer.user_data.email, customer.user_data.pk,
+                             confirmCtrl.customer.user_data.client_name, confirmCtrl.customer.user_data.contact_number,
+                             confirmCtrl.customer.user_data.email, confirmCtrl.customer.user_data.pk,
                              confirmCtrl.user.username, confirmCtrl.user.password,
-                             customer.order
+                             confirmCtrl.customer.order
                             )"
               class="btn btn-primary"
               ng-disabled="clientform.$invalid || confirmCtrl.in_progress ||

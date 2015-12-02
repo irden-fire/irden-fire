@@ -69,36 +69,22 @@ angular
         "port": ":8000"
     })
 .config(config)
-.controller('TranslateController', function($translate, $scope, $http, AuthTokenFactory, hostConfig){
-  var indexCtrl = this;
+.controller('TranslateController',
+             function($translate, $scope, $http, $route,
+                      AuthTokenFactory, hostConfig, UserData){
 
-  $scope.customer = {};
-  $scope.customer.user_data = {};
+  var indexCtrl = this;
+  console.log('Controller initialization');
+  indexCtrl.customer = UserData.getUserData();
+  indexCtrl.clearUserData = UserData.clearUserData;
+  UserData.setUserData();
+  //$scope.customer.user_data = {};
   $scope.weInSystem = false;
 
   indexCtrl.changeLanguage = function (langKey) {
     $translate.use(langKey);
     console.log("lang:"+langKey);
   };
-
-//TODO make one service, which can login or register user, and change form data at the same time
-//TODO deside how check is we in system or not
-  $scope.getUserData = function(){
-     $http({method: 'GET', url: hostConfig.url+hostConfig.port+'/api/v1/current_user/'}).
-          then(function(response) {
-            var current_user = response.data;
-              $scope.customer.user_data.client_name = current_user.client_name;
-              $scope.customer.user_data.contact_number = current_user.contact_number;
-              $scope.customer.user_data.email = current_user.email;
-              //$scope.customer.user_data.user = 123;//current_user.user;
-              $scope.customer.user_data.pk = current_user.pk;
-              $scope.weInSystem = true;
-
-          }, function(response) {
-
-          });
-  };
-  $scope.getUserData();
 
   indexCtrl.login = function(username, password){
     $http({method: 'POST', url: hostConfig.url+hostConfig.port+'/api/v1/auth/login/',
@@ -109,8 +95,10 @@ angular
          }).
          then(function success(response) {
            AuthTokenFactory.setToken(response.data.token);
-           $scope.getUserData();
-           $scope.weInSystem = true;
+           UserData.setUserData();
+           indexCtrl.customer = UserData.getUserData();
+           $route.reload();
+           //$scope.weInSystem = true;
            return response;
          }, function handleError(response) {
            console.log("error:"+response.data);
@@ -119,34 +107,55 @@ angular
 
   indexCtrl.logout = function(){
     AuthTokenFactory.setToken();
-    $scope.customer = {};
-    $scope.customer.order = {};
-    $scope.customer.user_data = {};
-    $scope.customer.order.desired_date = new Date();
-    $scope.customer.order.desired_date.setHours(21);
-    $scope.customer.order.desired_date.setMinutes(0);
-    $scope.weInSystem = false;
+    UserData.clearUserData();
+    indexCtrl.customer = UserData.getUserData();
+    $route.reload();
     indexCtrl.user = {};
   };
 
 })
-.factory('GetUserDataFactory', function GetUserDataFactory($http){
+.factory('UserData', function UserData($http, hostConfig){
   'use strict';
-  var customer = {};
-  customer.user_data = {};
-  customer.order = {};
+  var userFactory = this;
+  userFactory.customer = {};
+  userFactory.customer.user_data = {};
+  userFactory.customer.order = {};
+  userFactory.customer.order.price = '';
+  userFactory.customer.order.desired_date = new Date();
+  userFactory.customer.order.desired_date.setHours(21);
+  userFactory.customer.order.desired_date.setMinutes(0);
 
-  function setUserData(){
+    function setUserData(){
+      $http({method: 'GET', url: hostConfig.url+hostConfig.port+'/api/v1/current_user/'}).
+                then(function(response) {
+                  var current_user = response.data;
+                  userFactory.customer.user_data.client_name = current_user.client_name;
+                  userFactory.customer.user_data.contact_number = current_user.contact_number;
+                  userFactory.customer.user_data.email = current_user.email;
+                  userFactory.customer.user_data.pk = current_user.pk;
+                }, function(response) {
 
-  }
+                });
+    }
 
-  function getUserData(){
+    function clearUserData(){
+      userFactory.customer = {};
+      userFactory.customer.user_data = {};
+      userFactory.customer.order = {};
+      userFactory.customer.order.desired_date = new Date();
+      userFactory.customer.order.desired_date.setHours(21);
+      userFactory.customer.order.desired_date.setMinutes(0);
+    }
 
-  }
+    function getUserData(){
+      return userFactory.customer;
+    }
 
-  function resetUserData(){
-
-  }
+    return {
+      getUserData: getUserData,
+      clearUserData: clearUserData,
+      setUserData: setUserData
+    }
 })
 
 .factory('AuthTokenFactory', function AuthTokenFactory($window){

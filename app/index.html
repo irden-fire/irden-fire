@@ -30,7 +30,8 @@
           <li><a ng-click="indexCtrl.changeLanguage('en')" translate="menu.BUTTON_TEXT_EN" class="menu_links btn-default"></a></li>
         </ul>
 
-        <form class="navbar-form navbar-right" ng-submit="indexCtrl.login(indexCtrl.user.username, indexCtrl.user.password)" ng-show="weInSystem == false">
+        <form class="navbar-form navbar-right" ng-submit="indexCtrl.login(indexCtrl.user.username, indexCtrl.user.password)"
+              ng-show="indexCtrl.customer.user_data.pk == null">
           <div class="form-group">
             <label class="menu_label" translate="menu.LABEL_USERNAME">Username:</label>
             <input type="text" ng-model="indexCtrl.user.username" class="form-control"
@@ -44,16 +45,14 @@
                    placeholder="{{'menu.PLACEHOLDER_PASSWORD' | translate}}"
             />
           </div>
-
           <button type="submit" class="btn btn-success" translate="menu.BUTTON_LOGIN"
                   ng-disabled="indexCtrl.user.username == null || indexCtrl.user.password == null"
           >Login</button>
         </form>
-
-        <form class="navbar-form nav-pills navbar-right" ng-show="weInSystem == true">
+        <form class="navbar-form nav-pills navbar-right" ng-show="indexCtrl.customer.user_data.pk != null">
           <div class="form-group">
             <label class="menu_label">
-              {{'menu.TEXT_GREETINGS' | translate}} {{customer.user_data.client_name}}
+              {{'menu.TEXT_GREETINGS' | translate}} {{indexCtrl.customer.user_data.client_name}}
             </label>
           </div>
           <button type="button" class="btn btn-danger"

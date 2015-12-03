@@ -83,6 +83,9 @@
       "CONFIRMATION_FORM_DATE": "Желаемая дата:",
       "CONFIRMATION_FORM_DATE_PLACEHOLDER": "Здесь вы можете указать желаемую дату выступления",
       "CONFIRMATION_FORM_DATE_TOOLTIP": "Введите желаемую дату, пожалуйста",
+      "CONFIRMATION_FORM_DATE_CURRENT": "Сегодня",
+      "CONFIRMATION_FORM_DATE_CLEAR": "Очистить",
+      "CONFIRMATION_FORM_DATE_CLOSE": "Закрыть",      
 
       "CONFIRMATION_FORM_TIME": "Желаемое время:",
 
@@ -118,8 +121,12 @@
       "FEEDBACK_FORM_MESSAGE_REQUIRED": "Введите текст сообщения",
       "FEEDBACK_FORM_TITLE_REQUIRED": "Введите заголовок",
       "FEEDBACK_FORM_RATE": "Оцените, пожалуйста",
-      "FEEDBACK_FORM_AUTHOR_REQUIRED": "Укажите ваше имя"
+      "FEEDBACK_FORM_AUTHOR_REQUIRED": "Укажите ваше имя",
 
+      "FEEDBACK_PAGINATION_PREVIOUS": "Предыдущие",
+      "FEEDBACK_PAGINATION_NEXT": "Следующие",
+      "FEEDBACK_PAGINATION_FIRST": "Первая",
+      "FEEDBACK_PAGINATION_LAST": "Последняя"
     },
     "final":
     {

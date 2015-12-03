@@ -4,7 +4,6 @@
 angular.module('irdenPage.main', [])
 
 .controller('MainCtrl', function($http, hostConfig) {
-  console.log('Controller initialization');
   var mainCtrl = this;
   /**
     @function getFeedbacksList

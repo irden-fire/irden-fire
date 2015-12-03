@@ -83,7 +83,7 @@ angular
 
   indexCtrl.changeLanguage = function (langKey) {
     $translate.use(langKey);
-    console.log("lang:"+langKey);
+    $route.reload();
   };
 
   indexCtrl.login = function(username, password){

@@ -121,9 +121,14 @@
       </footer>
     </article>
     <uib-pagination total-items="feedbackCtrl.feedbacks.count" ng-model="feedbackCtrl.bigCurrentPage"
-      max-size="feedbackCtrl.maxSize" class="pagination-sm"
-      boundary-links="true" rotate="false"
-      num-pages="feedbackCtrl.numPages" ng-change="feedbackCtrl.changePage()"
-      items-per-page="feedbackCtrl.numPerPage">
+        max-size="feedbackCtrl.maxSize" class="pagination-sm"
+        boundary-links="true" rotate="false"
+        num-pages="feedbackCtrl.numPages" ng-change="feedbackCtrl.changePage()"
+        items-per-page="feedbackCtrl.numPerPage"
+        previous-text = "{{'feedback.FEEDBACK_PAGINATION_PREVIOUS' | translate}}"
+        next-text = "{{'feedback.FEEDBACK_PAGINATION_NEXT' | translate}}"
+        first-text = "{{'feedback.FEEDBACK_PAGINATION_FIRST' | translate}}"
+        last-text = "{{'feedback.FEEDBACK_PAGINATION_LAST' | translate}}"
+      >
     </uib-pagination>
 </div>

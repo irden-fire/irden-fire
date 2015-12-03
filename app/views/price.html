@@ -25,7 +25,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="program in data.results">
+      <tr ng-repeat="program in priceCtrl.prices.results">
         <td>
           <a href="confirmation/{{program.id}}" class="btn btn-default">{{'price.PRICE_TABLE_CHOOSE_BUTTON' | translate}}</a>
         </td>
@@ -34,7 +34,10 @@
         <td>{{program.duration}} min</td>
         <td>{{program.how_many_participants}}</td>
         <td>
-        <button type="button" class="form-control btn-default" ng-click="priceCtrl.isCollapsed = !priceCtrl.isCollapsed">{{'price.PRICE_TABLE_BUTTON' | translate}}</button>
+        <button type="button" class="form-control btn-default"
+                ng-click="priceCtrl.isCollapsed = !priceCtrl.isCollapsed">
+                {{'price.PRICE_TABLE_BUTTON' | translate}}
+        </button>
         <div uib-collapse="priceCtrl.isCollapsed">
           <div class="well well-lg alpha6">{{program.description}}</div>
         </div>

@@ -82,17 +82,23 @@
               <label for="desired_date" class="control-label">{{'confirmation.CONFIRMATION_FORM_DATE' | translate}}</label>
               <div class="input-group">
                 <input type="text" name="desired_date" class="form-control"
-                        uib-datepicker-popup={{confirmCtrl.format}} ng-model="confirmCtrl.customer.order.desired_date" is-open="confirmCtrl.calendar_status.opened"
-                        min-date="confirmCtrl.minDate" max-date="confirmCtrl.maxDate" datepicker-options="confirmCtrl.dateOptions"
-                        ng-required="true" close-text="Close"
+                        ng-model="confirmCtrl.customer.order.desired_date" is-open="confirmCtrl.calendar_status.opened"
+                        min-date="confirmCtrl.minDate" max-date="confirmCtrl.maxDate"
+                        datepicker-options="confirmCtrl.dateOptions"
+                        ng-required="true"
                         placeholder="{{'confirmation.CONFIRMATION_FORM_DATE_PLACEHOLDER' | translate}}"
                         uib-tooltip="{{'confirmation.CONFIRMATION_FORM_DATE_TOOLTIP' | translate}}"
                         tooltip-placement="top"
                         tooltip-trigger="mouseenter"
                         tooltip-enable="!confirmCtrl.customer.order.desired_date"
+                        uib-datepicker-popup="shortDate"
+                        current-text="{{'confirmation.CONFIRMATION_FORM_DATE_CURRENT' | translate}}"
+                        clear-text="{{'confirmation.CONFIRMATION_FORM_DATE_CLEAR' | translate}}"
+                        close-text="{{'confirmation.CONFIRMATION_FORM_DATE_CLOSE' | translate}}"
+                        shortcut-propagation = "true"
                         />
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    <button type="button" class="btn btn-default" ng-click="confirmCtrl.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
               </div>
             </div>

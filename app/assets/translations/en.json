@@ -96,7 +96,12 @@
     "FEEDBACK_FORM_EMAIL_PLACEHOLDER": "your@email.xx",
     "FEEDBACK_FORM_EMAIL_TOOLTIP": "Enter your email, please",
 
-    "FEEDBACK_FORM_SUBMIT": "Send"
+    "FEEDBACK_FORM_SUBMIT": "Send",
+
+    "FEEDBACK_PAGINATION_PREVIOUS": "Previous",
+    "FEEDBACK_PAGINATION_NEXT": "Next",
+    "FEEDBACK_PAGINATION_FIRST": "First",
+    "FEEDBACK_PAGINATION_LAST": "Last"
   },
 
   "confirmation":
@@ -122,6 +127,9 @@
     "CONFIRMATION_FORM_DATE": "Desired date:",
     "CONFIRMATION_FORM_DATE_PLACEHOLDER": "Here you need to enter desired date of performance",
     "CONFIRMATION_FORM_DATE_TOOLTIP": "Enter desired date please",
+    "CONFIRMATION_FORM_DATE_CURRENT": "Today",
+    "CONFIRMATION_FORM_DATE_CLEAR": "Clear",
+    "CONFIRMATION_FORM_DATE_CLOSE": "Close",    
     "CONFIRMATION_FORM_TIME": "Desired time:",
     "CONFIRMATION_FORM_POST": "Post"
   },

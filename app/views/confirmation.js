@@ -25,7 +25,6 @@ angular.module('irdenPage.confirmation', [])
   confirmCtrl.in_progress = false;
 
 //Initialization date-picker params and function
-  confirmCtrl.format = 'dd-mm-yyyy';
   confirmCtrl.maxDate = new Date(2020, 5, 22);
   confirmCtrl.minDate = new Date();
 /*  $scope.customer.order.desired_date = new Date();
@@ -33,7 +32,7 @@ angular.module('irdenPage.confirmation', [])
   $scope.customer.order.desired_date.setMinutes(0);*/
 
   confirmCtrl.dateOptions = {
-    formatYear: 'yyyy',
+    //formatYear: 'yyyy',
     startingDay: 1
   };
 

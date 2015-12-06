@@ -1,8 +1,8 @@
 {
-  "name": "angular-seed",
-  "description": "A starter project for AngularJS",
+  "name": "irden fire show site",
+  "description": "A simple site for our fire team",
   "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-seed",
+  "homepage": "https://github.com/irden-fire/irden-fire",
   "license": "MIT",
   "private": true,
   "dependencies": {

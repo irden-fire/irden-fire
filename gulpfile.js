@@ -20,7 +20,7 @@ var gulp = require('gulp'),
 var files = require('./gulp/gulp.config.js');
 
 gulp.task('default', function(callback){
-  runSequence('build','watch','server','watch-custom-js-css', callback);
+  runSequence('build', 'watch', 'server', 'watch-custom-js-css', callback);
 });
 
 /**
@@ -28,7 +28,7 @@ gulp.task('default', function(callback){
  */
 gulp.task('karma', function (done) {
   new Server({
-    configFile: './karma.conf.js',
+    configFile: __dirname + '/my.conf.js',
     singleRun: true
   }, done).start();
 });
@@ -111,7 +111,7 @@ gulp.task('clean', function(){
   return del([files.build_dir], {force: true});
 });
 
-gulp.task('copy-build', ['copy-views', 'publish-components', 'copy-assets', 'publish-app-css', 'copy-app-js']);
+gulp.task('copy-build', ['copy-views', 'copy-templates', 'publish-components', 'copy-assets', 'publish-app-css', 'copy-app-js']);
 
 gulp.task('copy-assets', function(){
   return gulp.src('./app/assets/**/*')
@@ -121,6 +121,11 @@ gulp.task('copy-assets', function(){
 gulp.task('copy-views', function(){
   //TODO check out why if you change view* to views all files moves to the root
   return gulp.src('./app/view*/**/*')
+    .pipe(gulp.dest(files.build_dir));
+});
+
+gulp.task('copy-templates', function(){
+  return gulp.src('./app/templates/**/*')
     .pipe(gulp.dest(files.build_dir));
 });
 

@@ -56,6 +56,7 @@ angular
   'ui.bootstrap',
   'ngSanitize',
   'ui.mask',
+  'angularPicasa',
   'pascalprecht.translate',
   'irdenPage.about_us',
   'irdenPage.main',
@@ -78,7 +79,6 @@ angular
   indexCtrl.customer = UserData.getUserData();
   indexCtrl.clearUserData = UserData.clearUserData;
   UserData.setUserData();
-  //$scope.customer.user_data = {};
   $scope.weInSystem = false;
 
   indexCtrl.changeLanguage = function (langKey) {
@@ -98,7 +98,6 @@ angular
            UserData.setUserData();
            indexCtrl.customer = UserData.getUserData();
            $route.reload();
-           //$scope.weInSystem = true;
            return response;
          }, function handleError(response) {
            console.log("error:"+response.data);

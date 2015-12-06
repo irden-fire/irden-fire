@@ -1,15 +1,15 @@
 'use strict';
 
-describe('myApp.view2 module', function() {
+describe('irdenPage.price module', function() {
 
-  beforeEach(module('myApp.view2'));
+  beforeEach(module('irdenPage.price'));
 
-  describe('view2 controller', function(){
+  describe('price controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body
-      var view2Ctrl = $controller('View2Ctrl');
-      expect(view2Ctrl).toBeDefined();
+      var priceCtrl = $controller('PriceCtrl');
+      expect(PriceCtrl).toBeDefined();
     }));
 
   });

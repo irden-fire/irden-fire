@@ -27,7 +27,7 @@ angular.module('irdenPage.confirmation', [])
 //Initialization date-picker params and function
   confirmCtrl.maxDate = new Date(2020, 5, 22);
   confirmCtrl.minDate = new Date();
-/*  $scope.customer.order.desired_date = new Date();
+/*$scope.customer.order.desired_date = new Date();
   $scope.customer.order.desired_date.setHours(21);
   $scope.customer.order.desired_date.setMinutes(0);*/
 

@@ -3,7 +3,7 @@
 
 angular.module('irdenPage.price', ['ui.bootstrap'])
 
-.controller('PriceCtrl', function($scope, $http, $translate, hostConfig, $window) {
+.controller('PriceCtrl', function($http, $translate, hostConfig, $window) {
   var priceCtrl = this;
   //If locale is changing right now - get it through async method,
   //else get it from local storage
@@ -28,7 +28,7 @@ angular.module('irdenPage.price', ['ui.bootstrap'])
 
              priceCtrl.prices.results.forEach(function(programm) {
                var currentLocale = 0;
-               //Go through all locales, if no one fit, get values by default 
+               //Go through all locales, if no one fit, get values by default
                for(var currentLocale = 0; currentLocale < programm.description_l18n.length; currentLocale++){
                  if(programm.description_l18n[currentLocale].language == priceCtrl.currentLang){
                    programm.name = programm.description_l18n[currentLocale].name;

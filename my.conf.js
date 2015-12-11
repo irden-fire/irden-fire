@@ -30,10 +30,11 @@ module.exports = function(config) {
       'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'app/bower_components/angular-ui-mask/mask.js',
       'app/bower_components/angular-loading-bar/loading-bar.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',      
+      'app/bower_components/angular-mocks/angular-mocks.js',
       'app/app.js',
       'app/views/*.js',
-      'app/tests/*.js'
+      'app/tests/main_test.js',
+      'app/tests/price_test.js'
     ],
 
 
@@ -48,7 +49,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-    //  'app/app.js': ['coverage']
+      'app/views/*.js': ['coverage']
     //  'app/app.js': ['coverage']
     },
 

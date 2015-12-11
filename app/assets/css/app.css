@@ -35,7 +35,9 @@
    position: relative;
    transition: top 0.3s;
  }
-
+/*
+ * main page animated button style
+ */
  .top { top: 0px; }
 
  .bottom { top: 100px; }
@@ -45,8 +47,6 @@
    color: #FFFFFF;
    background: rgba(192, 192, 192, 0.6);
  }
-
-
 
  .well.login {
    color: #000000;

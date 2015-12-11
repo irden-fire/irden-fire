@@ -1,31 +1,49 @@
 'use strict';
 
 describe('irdenPage.main module', function() {
+  var  $httpBackend,
+    createController, hostConfig, feedbacks;
 
-//  beforeEach(module('irdenPage.main'));
-  beforeEach(inject(function ($rootScope, $controller _$location_) {
-    $location = _$location_;
-    scope = $rootScope.$new();
+    hostConfig = {
+            "url": "http://127.0.0.1",
+            "port": ":8000"
+        };
 
-    // Initialize the controller and a mock scope
-    beforeEach(inject(function ($controller, $rootScope) {
-      scope = $rootScope.$new();
-      MainCtrl = $controller('MainCtrl', {
-        $scope: scope
-      });
-    }));
-    createController = function() {
-            return $controller('NavCtrl', {
-                '$scope': scope
-            });
+    beforeEach(module('irdenPage.main'));
 
-  describe('main controller', function(){
+    beforeEach(inject(function($injector){
+      $httpBackend = $injector.get('$httpBackend');
 
-    it('should ....', inject(function($controller) {
-      //spec body
-      var mainCtrl = $controller('MainCtrl');
-      expect(mainCtrl).toBeDefined();
-    }));
+    feedbacks = $httpBackend.when('GET', hostConfig.url+hostConfig.port+'/feedbacks/?limit=3')
+                  .respond({feedbacks: {results: ['feedback1', 'feedback2', 'feedback3'] }});
 
+    var $controller = $injector.get('$controller');
+
+    createController = function(){
+      return $controller('MainCtrl', {hostConfig: hostConfig});
+    };
+}));
+
+  afterEach(function() {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  });
+
+  it('should get feedbacks', function(){
+    $httpBackend.expectGET(hostConfig.url+hostConfig.port+'/feedbacks/?limit=3');
+    var mainCtrl = {};
+    var controller = createController('MainCtrl', {mainCtrl : mainCtrl});
+    $httpBackend.flush();
+  });
+
+  it('shouldn\'t get feedbacks', function(){
+    feedbacks.respond(404, '');
+
+    $httpBackend.expectGET(hostConfig.url+hostConfig.port+'/feedbacks/?limit=3');
+    var mainCtrl = {};
+    var controller = createController('MainCtrl', {mainCtrl : mainCtrl});
+    $httpBackend.flush();
+    expect(mainCtrl.status).toEqual(404);
+    //expect(mainCtrl.feedbacks.length).toBeGreaterThan(0);
   });
 });

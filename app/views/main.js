@@ -3,7 +3,7 @@
 
 angular.module('irdenPage.main', [])
 
-.controller('MainCtrl', function($http, hostConfig) {
+.controller('MainCtrl', [ '$http', 'hostConfig', function($http, hostConfig) {
   var mainCtrl = this;
   /**
     @function getFeedbacksList
@@ -19,11 +19,5 @@ angular.module('irdenPage.main', [])
              mainCtrl.data = response.data || "Request failed";
              mainCtrl.status = response.status;
          });
-    /*  var lang = {};
-      var _this = this;
-      $http.get('assets/languages/en_us.json').success(function(data) {
-         _this.lang = data;
-      //   console.log(_this.lang);
-    });*/
-});
+}]);
 })();

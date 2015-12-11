@@ -5,7 +5,7 @@ angular.module('irdenPage.feedback', [])
 
 .controller('FeedbackCtrl', function($http, hostConfig) {
   var feedbackCtrl = this;
-//  feedbackCtrl.Math = window.Math;
+  feedbackCtrl.feedback = {};
   feedbackCtrl.numPerPage = 5;
   feedbackCtrl.numPages = 0;
   feedbackCtrl.bigCurrentPage = 1;
@@ -65,12 +65,5 @@ angular.module('irdenPage.feedback', [])
       }
   //end
 
-   feedbackCtrl.feedback = {};
-/*
-   feedbackCtrl.post = function() {
-     feedbackCtrl.postFeedback(feedbackCtrl.feedback);
-     feedbackCtrl.feedback = {};
-   };*/
-
-});
+  });
 })();

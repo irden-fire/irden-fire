@@ -4,7 +4,6 @@
 angular.module('irdenPage.confirmation', [])
 
 .controller('ConfirmationCtrl', function($scope, $location, $routeParams, $http, hostConfig, UserData) {
-  // $scope.customer = {};
   var confirmCtrl = this;
   confirmCtrl.customer = UserData.getUserData();
 
@@ -15,10 +14,6 @@ angular.module('irdenPage.confirmation', [])
           $scope.confirming_order = response.data || "Request failed";
       });
 
-//  $scope.getUserData = function(){
-
-//   }
-
 //Params initialization
   confirmCtrl.user = {};
   confirmCtrl.customer.order.price = $routeParams.price;
@@ -27,10 +22,6 @@ angular.module('irdenPage.confirmation', [])
 //Initialization date-picker params and function
   confirmCtrl.maxDate = new Date(2020, 5, 22);
   confirmCtrl.minDate = new Date();
-/*$scope.customer.order.desired_date = new Date();
-  $scope.customer.order.desired_date.setHours(21);
-  $scope.customer.order.desired_date.setMinutes(0);*/
-
   confirmCtrl.dateOptions = {
     //formatYear: 'yyyy',
     startingDay: 1
